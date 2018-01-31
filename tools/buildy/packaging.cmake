@@ -1,0 +1,36 @@
+
+# Pass something like RELEASE=216010f.fc20 to define your own Release
+IF(NOT DEFINED RELEASE)
+SET(RELEASE "${CMAKE_SYSTEM_NAME}")
+ENDIF(NOT DEFINED RELEASE)
+
+SET(CPACK_PACKAGE_NAME buildy)
+SET(CPACK_PACKAGE_VERSION 1.0.0)
+SET(CPACK_PACKAGE_VENDOR "Tony Di Croce")
+SET(CPACK_PACKAGE_GROUP "open stuff")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Multiple GIT repo and build tool.")
+
+IF(CMAKE_SYSTEM MATCHES "Linux-")
+
+  SET(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
+
+  LIST(APPEND CPACK_GENERATOR RPM)
+  SET(CPACK_RPM_PACKAGE_NAME buildy)
+  SET(CPACK_RPM_PACKAGE_RELEASE ${RELEASE})
+  SET(CPACK_RPM_SPEC_MORE_DEFINE "%define ignore \#") # work around for cpack issue
+  SET(CPACK_RPM_USER_FILELIST "%ignore /usr" "%ignore /usr/local" "%ignore /lib" "%ignore /lib/systemd" "%ignore /lib/systemd/system" "%ignore /etc" "%ignore /etc/rsyslog.d")
+  SET(CPACK_RPM_USER_BINARY_SPECFILE "${CMAKE_CURRENT_SOURCE_DIR}/custom.spec")
+  SET(CPACK_RPM_PACKAGE_AUTOREQPROV " no")
+  SET(CPACK_RPM_PACKAGE_ARCHITECTURE ${TARGET_ARCH})
+
+ELSE(CMAKE_SYSTEM MATCHES "Linux-")
+
+ENDIF(CMAKE_SYSTEM MATCHES "Linux-")
+
+# Finally, setup our package file name
+SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${RELEASE}.${TARGET_ARCH}" )
+
+# output directory
+SET(CPACK_OUTPUT_FILE_PREFIX "${devel_artifacts_path}/packages")
+
+INCLUDE(CPack)

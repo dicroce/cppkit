@@ -1,0 +1,47 @@
+{
+    "components":
+    [
+        {
+            "name": "cppkit",
+            "src": "https://github.com/dicroce/cppkit",
+            "path": "cppkit",
+            "cleanbuild": "build_lib.sh",
+            "tags": [ "libs" ]
+        },
+        {
+            "name": "x264",
+            "src": "https://github.com/MultiSight/x264",
+            "path": "x264",
+            "cleanbuild": "build_3rdparty.sh",
+            "tags": [ "libs", "3rdparty" ]
+        },
+        {
+            "name": "ffmpeg",
+            "src": "https://github.com/MultiSight/ffmpeg",
+            "path": "ffmpeg",
+            "cleanbuild": "build_3rdparty.sh",
+            "tags": [ "libs", "3rdparty" ]
+        },
+        {
+            "name": "avkit",
+            "src": "https://github.com/dicroce/avkit",
+            "path": "avkit",
+            "cleanbuild": "build_lib.sh",
+            "tags": [ "libs" ]
+        },
+        {
+            "name": "hyper",
+            "src": "https://github.com/dicroce/hyper",
+            "path": "hyper",
+            "cleanbuild": "build_lib.sh",
+            "tags": [ "libs" ]
+        },
+        {
+            "name": "river",
+            "src": "https://github.com/dicroce/river",
+            "path": "river",
+            "cleanbuild": "build_lib.sh",
+            "tags": [ "libs" ]
+        }
+    ]
+}

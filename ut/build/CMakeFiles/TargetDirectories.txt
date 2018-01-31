@@ -1,0 +1,3 @@
+/home/developer/code/open/cppkit/ut/build/CMakeFiles/rebuild_cache.dir
+/home/developer/code/open/cppkit/ut/build/CMakeFiles/edit_cache.dir
+/home/developer/code/open/cppkit/ut/build/CMakeFiles/ut.dir
