@@ -5,22 +5,29 @@
 using namespace cppkit;
 using namespace std;
 
-ck_file::ck_file( ck_file&& obj ) :
+ck_file::ck_file( ck_file&& obj ) noexcept :
     _f( std::move(obj._f) )
 {
     obj._f = nullptr;
 }
 
-ck_file::~ck_file() throw()
+ck_file::~ck_file() noexcept
 {
     if( _f )
         fclose(_f);
 }
 
-ck_file& ck_file::operator = ( ck_file&& obj )
+ck_file& ck_file::operator = ( ck_file&& obj ) noexcept
 {
+    if( _f )
+    {
+        fclose(_f);
+        _f = nullptr;
+    }
+
     _f = std::move( obj._f );
     obj._f = nullptr;
+
     return *this;
 }
 

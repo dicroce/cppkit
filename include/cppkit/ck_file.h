@@ -43,10 +43,12 @@ class ck_file final
 {
 public:
     CK_API ck_file() : _f( nullptr ) {}
-	CK_API ck_file( ck_file&& obj );
-	CK_API ~ck_file() throw();
+    CK_API ck_file( const ck_file& ) = delete;
+	CK_API ck_file( ck_file&& obj ) noexcept;
+	CK_API ~ck_file() noexcept;
 
-	CK_API ck_file& operator = ( ck_file&& obj );
+    CK_API ck_file& operator = ( const ck_file& ) = delete;
+	CK_API ck_file& operator = ( ck_file&& obj ) noexcept;
 
 	CK_API operator FILE*() const { return _f; }
 
@@ -56,7 +58,7 @@ public:
         obj._f = fopen(path.c_str(), mode.c_str());
         if( !obj._f )
             CK_THROW(("Unable to open: %s",path.c_str()));
-        return obj;
+        return std::move(obj);
     }
 
 	CK_API void close() { fclose(_f); _f = nullptr; }
@@ -66,9 +68,6 @@ public:
 	CK_API static void atomic_rename_file(const ck_string& oldPath, const ck_string& newPath);
 
 private:
-    ck_file( const ck_file& ) = delete;
-    ck_file& operator = ( const ck_file& ) = delete;
-
     FILE* _f;
 };
 
