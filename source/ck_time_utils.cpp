@@ -173,6 +173,8 @@ milliseconds cppkit::ck_time_utils::iso_8601_period_to_duration(const string& st
 {
 	auto dur = milliseconds::zero();
 
+	auto numHours = duration_cast<hours>(dur).count();
+
 	char designators[] = {'Y', 'M', 'W', 'D', 'T', 'H', 'M', 'S'};
 
 	size_t idx = 0;
@@ -183,10 +185,14 @@ milliseconds cppkit::ck_time_utils::iso_8601_period_to_duration(const string& st
 
 	for(size_t i = 0; i < 8; ++i)
 	{
+		numHours = duration_cast<hours>(dur).count();
+
 		auto didx = str.find(designators[i], idx);
+		idx = didx + 1;
 
 		if(didx != string::npos)
 		{
+			//auto fieldStart = str.rfind_first_not_of("0123456789");
 			auto fieldStart = str.rfind(prevDesig, didx) + 1;
 
 			auto field = str.substr(fieldStart, (didx - fieldStart));
@@ -249,12 +255,16 @@ milliseconds cppkit::ck_time_utils::iso_8601_period_to_duration(const string& st
 		}
 	}
 
+
 	return dur;
 }
 
 string cppkit::ck_time_utils::duration_to_iso_8601_period(milliseconds d)
 {
 	string output = "P";
+
+	auto numMillis = d.count();
+	auto numHours = duration_cast<hours>(d).count();
 
     auto y = duration_cast<hours>(d).count() / 8760;
     d -= hours(y * 8760);
