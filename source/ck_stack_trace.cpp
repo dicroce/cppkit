@@ -1,138 +1,89 @@
 
-/// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=--=-=-=-=-=-
-/// cppkit - http://www.cppkit.org
-/// Copyright (c) 2013, Tony Di Croce
-/// All rights reserved.
-///
-/// Redistribution and use in source and binary forms, with or without modification, are permitted
-/// provided that the following conditions are met:
-///
-/// 1. Redistributions of source code must retain the above copyright notice, this list of conditions and
-///    the following disclaimer.
-/// 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions
-///    and the following disclaimer in the documentation and/or other materials provided with the
-///    distribution.
-///
-/// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
-/// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-/// PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-/// ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-/// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-/// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-/// TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-/// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-///
-/// The views and conclusions contained in the software and documentation are those of the authors and
-/// should not be interpreted as representing official policies, either expressed or implied, of the cppkit
-/// Project.
-/// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=--=-=-=-=-=-
-
 #include "cppkit/ck_stack_trace.h"
-#include "cppkit/ck_types.h"
 
-#include <string>
 #include <stdlib.h>
-
-#ifdef IS_WINDOWS
-#else
-  #include <cxxabi.h>
-  #include <execinfo.h>
-#endif
+#include <cxxabi.h>
+#include <execinfo.h>
 
 using namespace cppkit;
 using namespace std;
 
-ck_string ck_stack_trace::get_stack()
+string cppkit::ck_stack_trace::get_stack(char sep)
 {
-    ck_string stack;
+    void* trace[256];
+    int traceSize = ::backtrace(trace, 256);
+    char** buffer = ::backtrace_symbols(trace, traceSize);
 
-#ifdef IS_WINDOWS
-    stack = "Currently, cppkit for win32 does not support stack traces in exceptions.";
-#else
-    const int size = 256;
-    char** buffer = NULL;
-    int traceSize = 0;
-    void* trace[size];
-
-    traceSize = backtrace(trace, size);
-
-    buffer = backtrace_symbols(trace, traceSize);
-
-    for( int i = 0; i < traceSize; i++ )
+    string stack;
+    for( int i = 1; buffer && i < traceSize-1; i++ )
     {
-        string stackFrame = buffer[i];
-        const size_t openParen = stackFrame.find('(');
-        const size_t plus = stackFrame.find('+', openParen);
-        string mangledFunc = stackFrame.substr(openParen + 1, plus - openParen - 1);
+        stack += "[#" + to_string((traceSize-1)-i) + "] ";
+        string s = buffer[i];
+        string mang = s.substr(s.find('(') + 1, s.find('+') - s.find('(') - 1);
 
-        if(mangledFunc.size() > 2 &&
-           (mangledFunc[0] == '_' || mangledFunc[1] == 'Z'))
+        if( char* demangled = abi::__cxa_demangle(mang.c_str(), 0, 0, 0) )
         {
-            int status = 0;
-            char* demangled = abi::__cxa_demangle(mangledFunc.c_str(), NULL, NULL, &status);
+            string dm = demangled;
+            free( demangled );
+            // remove "std::" from names...
+            //for( size_t i = dm.find("std::"); i != string::npos; i = dm.find("std::") )
+            //    dm.erase(i, 5);
 
-            if( demangled )
-            {
-                stack += ck_string::format( "%s\n",
-                                        (stackFrame.substr(0, openParen + 1) + demangled + ')').c_str() );
+            stack += dm;
+        } else stack += mang;
 
-                free( demangled );
-            }
-            else stack += ck_string::format( "%s\n", mangledFunc.c_str() );
-        }
-        else stack += ck_string::format( "%s\n", mangledFunc.c_str() );
+        stack += sep;
     }
 
-    free(buffer);
-#endif
+    if(buffer)
+        free(buffer);
 
     return stack;
 }
 
-vector<ck_string> ck_stack_trace::get_stack_frame_names()
+vector<string> cppkit::ck_stack_trace::get_stack_frame_names()
 {
-    vector<ck_string> stack;
+    vector<string> stack;
 
-#ifdef IS_WINDOWS
-    ck_string msg( "Currently, cppkit for win32 does not support stack traces in exceptions." );
-    stack.push_back( msg );
-#else
     const int size = 256;
-    char** buffer = NULL;
+    char** buffer = nullptr;
     int traceSize = 0;
     void* trace[size];
 
     traceSize = backtrace(trace, size);
-
     buffer = backtrace_symbols(trace, traceSize);
 
     for( int i = 0; i < traceSize; i++ )
     {
         string stackFrame = buffer[i];
 
-	size_t plusIndex = stackFrame.find( "+" );
-	size_t nameStart = stackFrame.rfind( ' ', plusIndex - 2 ) + 1;
+        size_t plusIndex = stackFrame.find( "+" );
+        size_t nameStart = stackFrame.rfind( ' ', plusIndex - 2 ) + 1;
 
-	string name = stackFrame.substr( nameStart, (plusIndex - 1) - nameStart );
+        string name = stackFrame.substr( nameStart, (plusIndex - 1) - nameStart );
 
-	size_t mangledStart = name.find( "_Z" );
-	if( mangledStart != std::string::npos )
-	{
+        size_t mangledStart = name.find( "_Z" );
+        if( mangledStart != std::string::npos )
+        {
             int status = 0;
-            char* demangled = abi::__cxa_demangle(name.c_str(), NULL, NULL, &status);
+            char* demangled = abi::__cxa_demangle(name.c_str(), nullptr, nullptr, &status);
 
             if( demangled )
             {
-                stack.push_back( demangled );
+                string dm = demangled;
                 free( demangled );
+                // remove "std::" from names...
+                for( size_t i = dm.find("std::"); i != string::npos; i = dm.find("std::") )
+                    dm.erase(i, 5);
+
+                stack.push_back(dm);
             }
-	    else stack.push_back( ck_string( name ) );
-	}
-	else stack.push_back( ck_string( name ) );
+            else stack.push_back( string( name ) );
+        }
+        else stack.push_back( string( name ) );
     }
 
     free(buffer);
-#endif
 
     return stack;
 }

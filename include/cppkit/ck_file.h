@@ -1,77 +1,122 @@
 
+#ifndef cppkit_ck_file_h
+#define cppkit_ck_file_h
 
-/// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=--=-=-=-=-=-
-/// cppkit - http://www.cppkit.org
-/// Copyright (c) 2013, Tony Di Croce
-/// All rights reserved.
-///
-/// Redistribution and use in source and binary forms, with or without modification, are permitted
-/// provided that the following conditions are met:
-///
-/// 1. Redistributions of source code must retain the above copyright notice, this list of conditions and
-///    the following disclaimer.
-/// 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions
-///    and the following disclaimer in the documentation and/or other materials provided with the
-///    distribution.
-///
-/// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
-/// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-/// PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-/// ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-/// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-/// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-/// TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-/// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-///
-/// The views and conclusions contained in the software and documentation are those of the authors and
-/// should not be interpreted as representing official policies, either expressed or implied, of the cppkit
-/// Project.
-/// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=--=-=-=-=-=-
+#define _LARGE_FILE_API
+#define _FILE_OFFSET_BITS 64
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
 
-#ifndef cppkit_file_h
-#define cppkit_file_h
-
-#include "cppkit/ck_string.h"
+#include "cppkit/ck_string_utils.h"
+#include "cppkit/ck_exception.h"
 #include <stdlib.h>
 #include <memory>
 #include <vector>
+#include <future>
+
+class test_cppkit_ck_file;
 
 namespace cppkit
 {
 
 class ck_file final
 {
+    friend class ::test_cppkit_ck_file;
 public:
-    CK_API ck_file() : _f( nullptr ) {}
-    CK_API ck_file( const ck_file& ) = delete;
-	CK_API ck_file( ck_file&& obj ) noexcept;
-	CK_API ~ck_file() noexcept;
+    ck_file() : _f(nullptr) {}
+    ck_file(const ck_file&) = delete;
+	ck_file(ck_file&& obj) noexcept;
+	~ck_file() noexcept;
 
-    CK_API ck_file& operator = ( const ck_file& ) = delete;
-	CK_API ck_file& operator = ( ck_file&& obj ) noexcept;
+    ck_file& operator = (ck_file&) = delete;
+	ck_file& operator = (ck_file&& obj) noexcept;
 
-	CK_API operator FILE*() const { return _f; }
+	operator FILE*() const { return _f; }
 
-	CK_API static ck_file open(const ck_string& path, const ck_string& mode)
+	static ck_file open(const std::string& path, const std::string& mode)
     {
         ck_file obj;
         obj._f = fopen(path.c_str(), mode.c_str());
-        if( !obj._f )
-            CK_THROW(("Unable to open: %s",path.c_str()));
-        return std::move(obj);
+        if(!obj._f)
+            CK_STHROW(ck_not_found_exception, ("Unable to open: %s",path.c_str()));
+        return obj;
     }
 
-	CK_API void close() { fclose(_f); _f = nullptr; }
-
-	CK_API static std::vector<uint8_t> read_file(const ck_string& path);
-	CK_API static void write_file(const uint8_t* bytes, size_t len, const ck_string& path);
-	CK_API static void atomic_rename_file(const ck_string& oldPath, const ck_string& newPath);
+	void close() { fclose(_f); _f = nullptr; }
 
 private:
     FILE* _f;
 };
 
+class ck_path final
+{
+    struct path_parts
+    {
+        std::string path;
+        std::string glob;
+    };
+
+ public:
+    ck_path(const std::string& glob);
+    ck_path(const ck_path&) = delete;
+    ck_path(ck_path&& obj) noexcept;
+
+    ~ck_path() noexcept;
+
+    ck_path& operator=(const ck_path&) = delete;
+    ck_path& operator=(ck_path&& obj) noexcept;
+
+    void open_dir(const std::string& glob);
+    bool read_dir(std::string& fileName);
+
+ private:
+    void _clear() noexcept;
+    path_parts _get_path_and_glob(const std::string& glob) const;
+
+    path_parts _pathParts;
+    bool _done;
+    DIR* _d;
+};
+
+namespace ck_fs
+{
+
+extern const std::string PATH_SLASH;
+
+enum ck_file_type
+{
+    CK_REGULAR,
+    CK_DIRECTORY
+};
+
+struct ck_file_info
+{
+    std::string file_name;
+    uint64_t file_size;
+    ck_file_type file_type;
+    uint32_t optimal_block_size;
+    std::chrono::system_clock::time_point access_time;
+    std::chrono::system_clock::time_point modification_time;
+};
+
+int stat(const std::string& fileName, struct ck_file_info* fileInfo);
+std::vector<uint8_t> read_file(const std::string& path);
+void write_file(const uint8_t* bytes, size_t len, const std::string& path);
+void atomic_rename_file(const std::string& oldPath, const std::string& newPath);
+bool file_exists(const std::string& path);
+bool is_reg(const std::string& path);
+bool is_dir(const std::string& path);
+int fallocate(FILE* file, uint64_t size);
+void break_path(const std::string& path, std::string& dir, std::string& fileName);
+std::string temp_file_name(const std::string& dir, const std::string& baseName = std::string());
+void get_fs_usage(const std::string& path, uint64_t& size, uint64_t& free);
+uint64_t file_size(const std::string& path);
+void mkdir(const std::string& path);
+
+}
+
 }
 
 #endif
-

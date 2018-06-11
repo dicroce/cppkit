@@ -1,113 +1,143 @@
 
-/// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=--=-=-=-=-=-
-/// cppkit - http://www.cppkit.org
-/// Copyright (c) 2013, Tony Di Croce
-/// All rights reserved.
-///
-/// Redistribution and use in source and binary forms, with or without modification, are permitted
-/// provided that the following conditions are met:
-///
-/// 1. Redistributions of source code must retain the above copyright notice, this list of conditions and
-///    the following disclaimer.
-/// 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions
-///    and the following disclaimer in the documentation and/or other materials provided with the
-///    distribution.
-///
-/// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
-/// WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
-/// PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-/// ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-/// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-/// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-/// TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-/// ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-///
-/// The views and conclusions contained in the software and documentation are those of the authors and
-/// should not be interpreted as representing official policies, either expressed or implied, of the cppkit
-/// Project.
-/// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=--=-=-=-=-=-
-
 #include "cppkit/ck_exception.h"
-#include "cppkit/ck_string.h"
+#include "cppkit/ck_string_utils.h"
 #include "cppkit/ck_stack_trace.h"
 
 using namespace std;
 using namespace cppkit;
 
-ck_exception::ck_exception()
-    : exception(),
-      _type_name("cppkit::ck_exception"),
-      _msg(),
-      _line_num(0),
-      _src_file(),
-      _stack(ck_stack_trace::get_stack()),
-      _what_msg()
+ck_exception::ck_exception() :
+    exception(),
+    _msg(),
+    _stack(ck_stack_trace::get_stack())
 {
 }
 
-ck_exception::ck_exception(const string& msg)
-    : exception(),
-      _type_name("cppkit::ck_exception"),
-      _msg(msg),
-      _line_num(0),
-      _src_file(),
-      _stack(ck_stack_trace::get_stack()),
-      _what_msg()
+ck_exception::ck_exception(const string& msg) :
+    exception(),
+    _msg(msg),
+    _stack(ck_stack_trace::get_stack())
 {
 }
 
-ck_exception::ck_exception(const char* msg, ...)
-    : exception(),
-      _type_name("XSDK::ck_exception"),
-      _msg(),
-      _line_num(0),
-      _src_file(),
-      _stack(ck_stack_trace::get_stack()),
-      _what_msg()
+ck_exception::ck_exception(const char* msg, ...) : 
+    exception(),
+    _msg(),
+    _stack(ck_stack_trace::get_stack())
 {
     va_list args;
     va_start(args, msg);
-    _msg = ck_string::format(msg, args);
+    _msg = ck_string_utils::format(msg, args);
     va_end(args);
 }
 
-ck_exception::~ck_exception() throw()
+ck_exception::~ck_exception() noexcept
 {
 }
 
-void ck_exception::set_type_name(const std::string& typeName)
+const char* ck_exception::what() const noexcept
 {
-    _type_name = typeName;
-}
-
-const char* ck_exception::get_type_name() const
-{
-    return _type_name.c_str();
-}
-
-const char* ck_exception::get_msg() const
-{
+    // XXX Note: Since this method returns a char*, we MUST assign our _msg
+    // member to the new string to guarantee the lifetime of the pointer to
+    // be as long as this ck_exception itself.
+    _msg = ck_string_utils::format("%s\n%s", _msg.c_str(), _stack.c_str());
     return _msg.c_str();
 }
 
-void ck_exception::set_msg(std::string msg)
+ck_not_found_exception::ck_not_found_exception() :
+    ck_exception()
 {
-    _msg = msg;
 }
 
-void ck_exception::set_throw_point(int line, const char* file)
+ck_not_found_exception::ck_not_found_exception(const char* msg, ...) :
+    ck_exception()
 {
-    _line_num = line;
-    _src_file = file;
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
 }
 
-const char* ck_exception::what() const throw()
+ck_invalid_argument_exception::ck_invalid_argument_exception() :
+    ck_exception()
 {
-    _what_msg = ck_string::format("%s thrown from [%s:%d]: \"%s\"\n%s",
-                                  get_type_name(),
-                                  get_src_file(),
-                                  get_line_num(),
-                                  get_msg(),
-                                  get_stack());
-    return _what_msg.c_str();
+}
+
+ck_invalid_argument_exception::ck_invalid_argument_exception(const char* msg, ...) :
+    ck_exception()
+{
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
+}
+
+ck_unauthorized_exception::ck_unauthorized_exception() :
+    ck_exception()
+{
+}
+
+ck_unauthorized_exception::ck_unauthorized_exception(const char* msg, ...) :
+    ck_exception()
+{
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
+}
+
+ck_not_implemented_exception::ck_not_implemented_exception() :
+    ck_exception()
+{
+}
+
+ck_not_implemented_exception::ck_not_implemented_exception(const char* msg, ...) :
+    ck_exception()
+{
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
+}
+
+ck_timeout_exception::ck_timeout_exception() :
+    ck_exception()
+{
+}
+
+ck_timeout_exception::ck_timeout_exception(const char* msg, ...) :
+    ck_exception()
+{
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
+}
+
+ck_io_exception::ck_io_exception() :
+    ck_exception()
+{
+}
+
+ck_io_exception::ck_io_exception(const char* msg, ...) :
+    ck_exception()
+{
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
+}
+
+ck_internal_exception::ck_internal_exception() :
+    ck_exception()
+{
+}
+
+ck_internal_exception::ck_internal_exception(const char* msg, ...) :
+    ck_exception()
+{
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
 }

@@ -1,15 +1,15 @@
 
-#ifndef cppkit_ck_server_threaded_h
-#define cppkit_ck_server_threaded_h
+#ifndef cppkit_server_threaded_h
+#define cppkit_server_threaded_h
 
 #include "cppkit/ck_socket.h"
+#include "cppkit/ck_ssl_socket.h"
 #include "cppkit/ck_socket_address.h"
-#include "cppkit/ck_string_utils.h"
-
+#include "cppkit/ck_string.h"
+#include "cppkit/os/ck_platform.h"
 #include <mutex>
 #include <thread>
 #include <functional>
-#include <list>
 
 namespace cppkit
 {
@@ -26,7 +26,7 @@ private:
     };
 
 public:
-    ck_server_threaded( int port, std::function<void(ck_buffered_socket<SOK_T>& conn)> connCB, const std::string& sockAddr = std::string() ) :
+    CK_API ck_server_threaded( int port, std::function<void(ck_buffered_socket<SOK_T>& conn)> connCB, const ck_string& sockAddr = ck_string() ) :
         _bufferedServerSocket(),
         _port( port ),
         _connCB( connCB ),
@@ -36,10 +36,7 @@ public:
     {
     }
 
-    ck_server_threaded(const ck_server_threaded&) = delete;
-    ck_server_threaded(ck_server_threaded&&) = delete;
-
-    virtual ~ck_server_threaded() noexcept
+    CK_API virtual ~ck_server_threaded() throw()
     {
         stop();
 
@@ -51,10 +48,7 @@ public:
         }
     }
 
-    ck_server_threaded& operator=(const ck_server_threaded&) = delete;
-    ck_server_threaded& operator=(ck_server_threaded&&) = delete;
-
-    void stop()
+    CK_API void stop()
     {
         if( _running )
         {
@@ -67,7 +61,7 @@ public:
         }
     }
 
-    void start()
+    CK_API void start()
     {
         try
         {
@@ -128,9 +122,9 @@ public:
         }
     }
 
-    bool started() const { return _running; }
+    CK_API bool started() const { return _running; }
 
-    SOK_T& get_socket() { return _bufferedServerSocket.get_socket(); }
+    CK_API SOK_T& get_socket() { return _bufferedServerSocket.get_socket(); }
 
 private:
     void _configure_server_socket()
@@ -159,7 +153,7 @@ private:
     ck_buffered_socket<SOK_T> _bufferedServerSocket;
     int _port;
     std::function<void(ck_buffered_socket<SOK_T>& conn)> _connCB;
-    std::string _sockAddr;
+    ck_string _sockAddr;
     std::list<std::shared_ptr<struct conn_context>> _connectedContexts;
     bool _running;
 };
