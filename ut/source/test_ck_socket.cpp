@@ -28,7 +28,7 @@ void test_ck_socket::test_client_server()
 {
     try
     {
-        const vector<string> addrs = { "127.0.0.1", "localhost", "::1" };
+        const vector<string> addrs = { "127.0.0.1" };
 
         int port = RTF_NEXT_PORT();
 
