@@ -35,6 +35,8 @@ void test_ck_time_utils::test_8601_to_tp()
 
 void test_ck_time_utils::test_tp_to_8601()
 {
+    auto v = ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520740800), false);
+    printf("%s\n",v.c_str());
     RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520740800), false) == "2018-03-10T20:00:00.000");
     RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520712000), true) == "2018-03-10T20:00:00.000Z");
     RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520823600), false) == "2018-03-11T20:00:00.000");
