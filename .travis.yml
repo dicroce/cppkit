@@ -24,5 +24,5 @@ script:
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
   # Run your build commands next
-  mkdir build && cd build && cmake .. && make
-  ut/cppkit_ut --dont-wait-on-fail
+  - mkdir build && cd build && cmake .. && make
+  - ut/cppkit_ut --dont-wait-on-fail
