@@ -1,4 +1,4 @@
-cppkit - http://www.cppkit.org
+cppkit
 Copyright (c) 2013, Tony Di Croce
 All rights reserved.
 
