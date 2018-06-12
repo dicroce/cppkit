@@ -81,14 +81,28 @@ int main( int argc, char* argv[] )
 {
     set_terminate( handle_terminate );
 
+    std::string fixture_name = "";
+    bool dontWaitOnFail = false;
+
+    if( argc > 1 )
+    {
+        std::string arg1 = argv[1];
+
+        if(arg1 == "--dont-wait-on-fail")
+            dontWaitOnFail = true;
+        else fixture_name = argv[1];
+
+        if( argc > 2 )
+        {
+            std::string arg2 = argv[2];
+            if(arg2 == "--dont-wait-on-fail")
+                dontWaitOnFail = true;
+            else fixture_name = argv[2];
+        }
+    }
     std::string arg;
     if(argc > 1)
         arg = argv[1];
-
-    std::string fixture_name = "";
-
-    if( argc > 1 )
-        fixture_name = argv[1];
 
     srand( time(0) );
 
@@ -113,7 +127,7 @@ int main( int argc, char* argv[] )
         printf("\nSuccess.\n");
     else printf("\nFailure.\n");
 
-    if(something_failed && (arg != "--dont-wait-on-fail"))
+    if(something_failed && !dontWaitOnFail)
         system("/bin/bash -c 'read -p \"Press Any Key\"'");
 
     return 0;
