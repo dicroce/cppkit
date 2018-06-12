@@ -17,7 +17,6 @@ install:
 before_script:
   - echo 'America/Los_Angeles' | sudo tee /etc/timezone
   - sudo dpkg-reconfigure --frontend noninteractive tzdata
-  - sudo ntpdate ntp.ubuntu.com
 script:
   # Link gcc-6 and g++-6 to their standard commands
   - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
