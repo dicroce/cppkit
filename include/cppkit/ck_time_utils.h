@@ -1,6 +1,6 @@
 
-#ifndef _cppkit_ck_time_utils_h
-#define _cppkit_ck_time_utils_h
+#ifndef cppkit_ck_time_utils_h
+#define cppkit_ck_time_utils_h
 
 #include <chrono>
 #include <string>
