@@ -1,6 +1,6 @@
 
-#ifndef _cppkit_ck_functional_h
-#define _cppkit_ck_functional_h
+#ifndef cppkit_ck_functional_h
+#define cppkit_ck_functional_h
 
 #include <vector>
 #include <algorithm>
