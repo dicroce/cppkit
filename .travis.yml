@@ -1,17 +1,19 @@
-dist: trusty
-sudo: required
-language:
-  - cpp
+sudo: false
+language: cpp
 compiler:
   - gcc
+  - clang
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
+    - llvm-toolchain-precise-3.8
     packages:
-      - gcc-6
-      - g++-6
-      - cmake
+    - g++-6
+    - clang-3.8
+install:
+- "[ $CXX = g++ ] && export CXX=g++-6 || true"
+- "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
 script:
   # Link gcc-6 and g++-6 to their standard commands
   - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
@@ -23,4 +25,3 @@ script:
   - gcc -v && g++ -v && cmake --version
   # Run your build commands next
   mkdir build && cd build && cmake .. && make && ut/cppkit_ut --dont-wait-on-fail
-

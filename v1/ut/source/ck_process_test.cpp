@@ -109,7 +109,7 @@ void ck_process_test::test_get_processes_for_module()
     UT_ASSERT( second == p1.get_pid() || second == p2.get_pid() );
 }
 
-void ck_process_test::test_wait_for_timeout()
+void ck_process_test::test_wait_fock_time_utilsout()
 {
     ck_process p1( "sleepy.exe 2000 0" );
     p1.start();

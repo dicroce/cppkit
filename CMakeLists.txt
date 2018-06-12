@@ -51,5 +51,4 @@ find_library(UUID_LIBRARY uuid)
 
 target_link_libraries (cppkit ${PTHREAD_LIBRARY} ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${DL_LIBRARY} ${UUID_LIBRARY})
 
-#add_executable (test source/main.cpp)
-#target_link_libraries(test cppkit)
+add_subdirectory(ut)

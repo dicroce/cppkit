@@ -25,14 +25,14 @@ typedef int SOCKET;
 #define SOCKET_SHUT_SEND_FLAGS SHUT_WR
 #define SOCKET_SHUT_RECV_FLAGS SHUT_RD
 
-class test_cppkit_ck_socket;
+class test_ck_socket;
 
 namespace cppkit
 {
 
 class ck_raw_socket : public ck_socket_io, public ck_pollable
 {
-    friend class ::test_cppkit_ck_socket;
+    friend class ::test_ck_socket;
 
 public:
     enum ck_raw_socket_defaults
@@ -84,7 +84,7 @@ protected:
 
 class ck_socket : public ck_stream_io, public ck_pollable
 {
-    friend class ::test_cppkit_ck_socket;
+    friend class ::test_ck_socket;
 
 public:
     enum ck_socket_defaults
@@ -152,7 +152,7 @@ template<class SOK>
 class ck_buffered_socket : public ck_stream_io, public ck_pollable
 {
 public:
-    friend class ::test_cppkit_ck_socket;
+    friend class ::test_ck_socket;
 
 public:
     enum ck_buffered_socket_defaults
