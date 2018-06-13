@@ -29,6 +29,7 @@ void test_ck_time_utils::test_8601_to_tp()
 
     int min = duration_cast<minutes>(atp-ptp).count();
 
+    printf("min = %d\n",min);
     // not 1440 becuase that second time (being local) was "sprung ahead" and so the difference between them is less that 24 hours of minutes.
     RTF_ASSERT(min == 1380);
 }
