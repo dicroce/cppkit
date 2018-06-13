@@ -21,7 +21,7 @@ void test_ck_time_utils::teardown()
 
 void test_ck_time_utils::test_8601_to_tp()
 {
-    if(!ck_time_utils::is_tz_utc())
+    if(ck_time_utils::is_tz_utc())
     {
         RTF_ASSERT(system_clock::to_time_t(ck_time_utils::iso_8601_to_tp("2018-06-13T16:12:07.000Z")) == 1528906327);
     }
