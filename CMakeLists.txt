@@ -5,15 +5,6 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 set (CMAKE_CXX_STANDARD 14)
-set (CMAKE_CXX_FLAGS "-pthread -Wall -Wfatal-errors")
-set (CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb")
-set (CMAKE_CXX_FLAGS_RELEASE "-O3")
-
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    add_definitions(-DIS_DARWIN)
-else (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    add_definitions(-DIS_LINUX)
-endif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 
 add_library (cppkit include/cppkit/ck_blob_tree.h
                     include/cppkit/ck_exception.h
@@ -40,6 +31,19 @@ add_library (cppkit include/cppkit/ck_blob_tree.h
                     source/ck_string_utils.cpp
                     source/ck_time_utils.cpp
                     source/ck_uuid_utils.cpp)
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    target_compile_definitions(cppkit PUBLIC IS_DARWIN)
+else (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    target_compile_definitions(cppkit PUBLIC IS_LINUX)
+endif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_options(cppkit PUBLIC "-O0")
+    target_compile_options(cppkit PUBLIC "-g")
+else(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_options(cppkit PUBLIC "-O3")
+endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 

@@ -1,6 +1,0 @@
-/Users/dicroce/code/open/cppkit/build/CMakeFiles/rebuild_cache.dir
-/Users/dicroce/code/open/cppkit/build/CMakeFiles/edit_cache.dir
-/Users/dicroce/code/open/cppkit/build/CMakeFiles/cppkit.dir
-/Users/dicroce/code/open/cppkit/build/ut/CMakeFiles/rebuild_cache.dir
-/Users/dicroce/code/open/cppkit/build/ut/CMakeFiles/edit_cache.dir
-/Users/dicroce/code/open/cppkit/build/ut/CMakeFiles/cppkit_ut.dir

@@ -92,7 +92,7 @@ public:
 
 #define CK_LOG_EXCEPTION(E) \
 CK_MACRO_BEGIN \
-    auto parts = cppkit::ck_string::split(std::string(E.what()), '\n'); \
+    auto parts = cppkit::ck_string_utils::split(std::string(E.what()), '\n'); \
     for( auto l : parts ) \
         CK_LOG_ERROR("%s",l.c_str()); \
 CK_MACRO_END
