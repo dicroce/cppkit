@@ -31,7 +31,7 @@ void test_ck_time_utils::test_8601_to_tp()
 
     printf("min = %d\n",min);
     // not 1440 becuase that second time (being local) was "sprung ahead" and so the difference between them is less that 24 hours of minutes.
-    RTF_ASSERT(min == 1380);
+    RTF_ASSERT(min == 1380 || min == 1440); // 1440 is for tz's that dont follow dst...
 }
 
 void test_ck_time_utils::test_tp_to_8601()

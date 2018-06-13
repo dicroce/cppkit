@@ -14,9 +14,6 @@ addons:
 install:
 - "[ $CXX = g++ ] && export CXX=g++-6 || true"
 - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
-before_script:
-  - echo 'America/Los_Angeles' | sudo tee /etc/timezone
-  - sudo dpkg-reconfigure --frontend noninteractive tzdata
 script:
   # Link gcc-6 and g++-6 to their standard commands
   - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
