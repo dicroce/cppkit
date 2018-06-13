@@ -178,3 +178,13 @@ chrono::system_clock::time_point cppkit::ck_time_utils::epoch_millis_to_tp(uint6
 {
 	return system_clock::time_point() + milliseconds(t);
 }
+
+bool cppkit::ck_time_utils::is_tz_utc()
+{
+	auto t = time(0);
+	struct tm lt;
+	localtime_r(&t, &lt);
+	printf("Offset to GMT is %lds.\n", lt.tm_gmtoff);
+	printf("The time zone is '%s'.\n", lt.tm_zone);
+	return (lt.tm_gmtoff == 0) ? true : false;
+}

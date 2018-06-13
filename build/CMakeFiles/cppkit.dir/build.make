@@ -60,145 +60,145 @@ include CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.o: ../source/ck_blob_tree.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_blob_tree.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_blob_tree.cpp
 
 CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_blob_tree.cpp > CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_blob_tree.cpp > CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_blob_tree.cpp -o CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_blob_tree.cpp -o CMakeFiles/cppkit.dir/source/ck_blob_tree.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_exception.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_exception.cpp.o: ../source/ck_exception.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cppkit.dir/source/ck_exception.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_exception.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_exception.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_exception.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_exception.cpp
 
 CMakeFiles/cppkit.dir/source/ck_exception.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_exception.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_exception.cpp > CMakeFiles/cppkit.dir/source/ck_exception.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_exception.cpp > CMakeFiles/cppkit.dir/source/ck_exception.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_exception.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_exception.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_exception.cpp -o CMakeFiles/cppkit.dir/source/ck_exception.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_exception.cpp -o CMakeFiles/cppkit.dir/source/ck_exception.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_file.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_file.cpp.o: ../source/ck_file.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cppkit.dir/source/ck_file.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_file.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_file.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_file.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_file.cpp
 
 CMakeFiles/cppkit.dir/source/ck_file.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_file.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_file.cpp > CMakeFiles/cppkit.dir/source/ck_file.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_file.cpp > CMakeFiles/cppkit.dir/source/ck_file.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_file.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_file.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_file.cpp -o CMakeFiles/cppkit.dir/source/ck_file.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_file.cpp -o CMakeFiles/cppkit.dir/source/ck_file.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_logger.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_logger.cpp.o: ../source/ck_logger.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cppkit.dir/source/ck_logger.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_logger.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_logger.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_logger.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_logger.cpp
 
 CMakeFiles/cppkit.dir/source/ck_logger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_logger.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_logger.cpp > CMakeFiles/cppkit.dir/source/ck_logger.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_logger.cpp > CMakeFiles/cppkit.dir/source/ck_logger.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_logger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_logger.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_logger.cpp -o CMakeFiles/cppkit.dir/source/ck_logger.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_logger.cpp -o CMakeFiles/cppkit.dir/source/ck_logger.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.o: ../source/ck_sha_256.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_sha_256.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_sha_256.cpp
 
 CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_sha_256.cpp > CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_sha_256.cpp > CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_sha_256.cpp -o CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_sha_256.cpp -o CMakeFiles/cppkit.dir/source/ck_sha_256.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.o: ../source/ck_socket_address.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_socket_address.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_socket_address.cpp
 
 CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_socket_address.cpp > CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_socket_address.cpp > CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_socket_address.cpp -o CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_socket_address.cpp -o CMakeFiles/cppkit.dir/source/ck_socket_address.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_socket.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_socket.cpp.o: ../source/ck_socket.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/cppkit.dir/source/ck_socket.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_socket.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_socket.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_socket.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_socket.cpp
 
 CMakeFiles/cppkit.dir/source/ck_socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_socket.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_socket.cpp > CMakeFiles/cppkit.dir/source/ck_socket.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_socket.cpp > CMakeFiles/cppkit.dir/source/ck_socket.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_socket.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_socket.cpp -o CMakeFiles/cppkit.dir/source/ck_socket.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_socket.cpp -o CMakeFiles/cppkit.dir/source/ck_socket.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.o: ../source/ck_stack_trace.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_stack_trace.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_stack_trace.cpp
 
 CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_stack_trace.cpp > CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_stack_trace.cpp > CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_stack_trace.cpp -o CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_stack_trace.cpp -o CMakeFiles/cppkit.dir/source/ck_stack_trace.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.o: ../source/ck_string_utils.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_string_utils.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_string_utils.cpp
 
 CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_string_utils.cpp > CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_string_utils.cpp > CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_string_utils.cpp -o CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_string_utils.cpp -o CMakeFiles/cppkit.dir/source/ck_string_utils.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.o: ../source/ck_time_utils.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_time_utils.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_time_utils.cpp
 
 CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_time_utils.cpp > CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_time_utils.cpp > CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_time_utils.cpp -o CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_time_utils.cpp -o CMakeFiles/cppkit.dir/source/ck_time_utils.cpp.s
 
 CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.o: CMakeFiles/cppkit.dir/flags.make
 CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.o: ../source/ck_uuid_utils.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_uuid_utils.cpp
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.o -c /Users/dicroce/code/open/cppkit/source/ck_uuid_utils.cpp
 
 CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_uuid_utils.cpp > CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/source/ck_uuid_utils.cpp > CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.i
 
 CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_uuid_utils.cpp -o CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/source/ck_uuid_utils.cpp -o CMakeFiles/cppkit.dir/source/ck_uuid_utils.cpp.s
 
 # Object files for target cppkit
 cppkit_OBJECTS = \

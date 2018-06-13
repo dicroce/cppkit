@@ -26,6 +26,8 @@ INT convert_clock_freq(INT ticks, INT srcTicksPerSecond, INT dstTicksPerSecond)
            ticks % srcTicksPerSecond * dstTicksPerSecond / srcTicksPerSecond;
 }
 
+bool is_tz_utc();
+
 }
 
 }

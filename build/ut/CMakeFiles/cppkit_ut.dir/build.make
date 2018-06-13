@@ -60,119 +60,119 @@ include ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/framework.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/framework.cpp.o: ../ut/source/framework.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/framework.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/framework.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/framework.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/framework.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/framework.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/framework.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/framework.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/framework.cpp > CMakeFiles/cppkit_ut.dir/source/framework.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/framework.cpp > CMakeFiles/cppkit_ut.dir/source/framework.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/framework.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/framework.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/framework.cpp -o CMakeFiles/cppkit_ut.dir/source/framework.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/framework.cpp -o CMakeFiles/cppkit_ut.dir/source/framework.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.o: ../ut/source/test_ck_string_utils.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_string_utils.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_string_utils.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_string_utils.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_string_utils.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_string_utils.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_string_utils.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_string_utils.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.o: ../ut/source/test_ck_sha_256.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_sha_256.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_sha_256.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_sha_256.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_sha_256.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_sha_256.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_sha_256.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_sha_256.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.o: ../ut/source/test_ck_socket.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_socket.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_socket.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_socket.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_socket.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_socket.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_socket.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_socket.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.o: ../ut/source/test_ck_server_threaded.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_server_threaded.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_server_threaded.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_server_threaded.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_server_threaded.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_server_threaded.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_server_threaded.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_server_threaded.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.o: ../ut/source/test_ck_file.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_file.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_file.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_file.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_file.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_file.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_file.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_file.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.o: ../ut/source/test_ck_uuid_utils.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_uuid_utils.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_uuid_utils.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_uuid_utils.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_uuid_utils.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_uuid_utils.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_uuid_utils.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_uuid_utils.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.o: ../ut/source/test_ck_time_utils.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_time_utils.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_time_utils.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_time_utils.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_time_utils.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_time_utils.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_time_utils.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_time_utils.cpp.s
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.o: ut/CMakeFiles/cppkit_ut.dir/flags.make
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.o: ../ut/source/test_ck_blob_tree.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dicroce/code/open/cppkit/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object ut/CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.o"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_blob_tree.cpp
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.o -c /Users/dicroce/code/open/cppkit/ut/source/test_ck_blob_tree.cpp
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.i"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_blob_tree.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.i
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dicroce/code/open/cppkit/ut/source/test_ck_blob_tree.cpp > CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.i
 
 ut/CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.s"
-	cd /Users/dicroce/code/open/cppkit/build/ut && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_blob_tree.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.s
+	cd /Users/dicroce/code/open/cppkit/build/ut && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dicroce/code/open/cppkit/ut/source/test_ck_blob_tree.cpp -o CMakeFiles/cppkit_ut.dir/source/test_ck_blob_tree.cpp.s
 
 # Object files for target cppkit_ut
 cppkit_ut_OBJECTS = \

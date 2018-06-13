@@ -29,17 +29,19 @@ void test_ck_time_utils::test_8601_to_tp()
 
     int min = duration_cast<minutes>(atp-ptp).count();
 
-    printf("min = %d\n",min);
     // not 1440 becuase that second time (being local) was "sprung ahead" and so the difference between them is less that 24 hours of minutes.
     RTF_ASSERT(min == 1380 || min == 1440); // 1440 is for tz's that dont follow dst...
 }
 
 void test_ck_time_utils::test_tp_to_8601()
 {
+    if(!ck_time_utils::is_tz_utc())
+    {
     auto v = ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520740800), false);
     printf("%s\n",v.c_str());
     RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520740800), false) == "2018-03-10T20:00:00.000");
     RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520712000), true) == "2018-03-10T20:00:00.000Z");
     RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520823600), false) == "2018-03-11T20:00:00.000");
     RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520798400), true) == "2018-03-11T20:00:00.000Z");
+    }
 }
