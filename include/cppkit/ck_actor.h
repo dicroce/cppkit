@@ -21,14 +21,12 @@ namespace cppkit
 template<class CMD, class RESULT>
 class ck_actor
 {
-    typedef std::unique_lock<std::mutex> guard;
-
-public:
+ public:
     ck_actor() = default;
     ck_actor(const ck_actor&) = delete;
     ck_actor(ck_actor&&) noexcept = delete;
 
-    virtual ~ck_actor() throw()
+    virtual ~ck_actor() noexcept
     {
         if(started())
             stop();
@@ -39,7 +37,7 @@ public:
 
     void start()
     {
-        guard g(_lock);
+        std::unique_lock<std::mutex> g(_lock);
         _started = true;
         _thread = std::thread(&ck_actor<CMD,RESULT>::_main_loop, this);
     }
@@ -54,7 +52,7 @@ public:
         if( started() )
         {
             {
-                guard g(_lock);
+                std::unique_lock<std::mutex> g(_lock);
                 _started = false;
                 _cond.notify_one();
                 _queue.clear();
@@ -66,7 +64,7 @@ public:
 
     std::future<RESULT> post(const CMD& cmd)
     {
-        guard g(_lock);
+        std::unique_lock<std::mutex> g(_lock);
 
         std::promise<RESULT> p;
         auto waiter = p.get_future();
@@ -88,7 +86,7 @@ protected:
             std::pair<CMD,std::promise<RESULT>> item;
 
             {
-                guard g(_lock);
+                std::unique_lock<std::mutex> g(_lock);
 
                 _cond.wait(g, [this] () { return !this->_queue.empty() || !this->_started; });
 
