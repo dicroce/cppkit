@@ -6,7 +6,8 @@ endif()
 
 set (CMAKE_CXX_STANDARD 14)
 
-add_library (cppkit include/cppkit/ck_blob_tree.h
+add_library (cppkit include/cppkit/ck_actor.h
+                    include/cppkit/ck_blob_tree.h
                     include/cppkit/ck_exception.h
                     include/cppkit/ck_file.h
                     include/cppkit/ck_logger.h
