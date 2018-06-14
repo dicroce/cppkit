@@ -1,5 +1,4 @@
 
-
 #ifndef cppkit_actor_h
 #define cppkit_actor_h
 
