@@ -63,6 +63,7 @@ int32_t s_to_int32(const std::string& s);
 uint64_t s_to_uint64(const std::string& s);
 int64_t s_to_int64(const std::string& s);
 double s_to_double(const std::string& s);
+size_t s_to_size_t(const std::string& s);
 
 std::string int_to_s(int val);
 std::string uint_to_s(unsigned int val);
@@ -75,6 +76,7 @@ std::string int32_to_s(int32_t val);
 std::string uint64_to_s(uint64_t val);
 std::string int64_to_s(int64_t val);
 std::string double_to_s(double val);
+std::string size_t_to_s(size_t val);
 
 }
 

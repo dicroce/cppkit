@@ -56,3 +56,61 @@ void test_ck_time_utils::test_tp_to_8601()
         RTF_ASSERT(ck_time_utils::tp_to_iso_8601(system_clock::from_time_t(1520798400), true) == "2018-03-11T20:00:00.000Z");
     }
 }
+
+void test_ck_time_utils::test_8601_period_to_duration()
+{
+    {
+        auto siny = hours(8760) + hours(720) + hours(168) + hours(24) + hours(1) + minutes(1) + seconds(1);
+        RTF_ASSERT(siny == ck_time_utils::iso_8601_period_to_duration("P1Y1M1W1DT1H1M1S"));
+    }
+
+    {
+        auto siny = hours(8760);
+        auto dur = ck_time_utils::iso_8601_period_to_duration("P1Y");
+        auto numMillis = dur.count();
+        RTF_ASSERT(siny == ck_time_utils::iso_8601_period_to_duration("P1Y"));
+    }
+
+    {
+        auto siny = hours(8760) + milliseconds(500);
+        RTF_ASSERT(siny == ck_time_utils::iso_8601_period_to_duration("P1YT0.5S"));
+    }
+
+    {
+        auto siny = hours(87600) + hours(288);
+        RTF_ASSERT(siny == ck_time_utils::iso_8601_period_to_duration("P10Y12D"));
+    }
+
+    {
+        auto siny = hours(100);
+        RTF_ASSERT(siny == ck_time_utils::iso_8601_period_to_duration("PT100H"));
+    }
+}
+
+void test_ck_time_utils::test_duration_to_8601_period()
+{
+    {
+        auto siny = duration_cast<milliseconds>(hours(8760) + hours(720) + hours(168) + hours(24) + hours(1) + minutes(1) + seconds(1));
+        RTF_ASSERT(ck_time_utils::duration_to_iso_8601_period(siny) == "P1Y1M1W1DT1H1M1S");
+    }
+
+    {
+        auto siny = hours(8760) + hours(720) + hours(168) + hours(24) + hours(1) + minutes(1) + seconds(1) + milliseconds(250);
+        RTF_ASSERT(ck_time_utils::duration_to_iso_8601_period(siny) == "P1Y1M1W1DT1H1M1.25S");
+    }
+
+    {
+        auto siny = duration_cast<milliseconds>(hours(8760 * 3) + minutes(5));
+        RTF_ASSERT(ck_time_utils::duration_to_iso_8601_period(siny) == "P3YT5M");
+    }
+
+    {
+        auto siny = duration_cast<milliseconds>(hours(8760 * 3) + milliseconds(250));
+        RTF_ASSERT(ck_time_utils::duration_to_iso_8601_period(siny) == "P3YT0.25S");
+    }
+
+    {
+        auto siny = duration_cast<milliseconds>(milliseconds(250));
+        RTF_ASSERT(ck_time_utils::duration_to_iso_8601_period(siny) == "PT0.25S");
+    }
+}

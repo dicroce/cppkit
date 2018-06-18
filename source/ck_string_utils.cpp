@@ -562,6 +562,13 @@ double cppkit::ck_string_utils::s_to_double(const string& s)
     return val;
 }
 
+size_t cppkit::ck_string_utils::s_to_size_t(const string& s)
+{
+    size_t val;
+    sscanf(s.c_str(), "%zu", &val);
+    return val;
+}
+
 string cppkit::ck_string_utils::int_to_s(int val)
 {
     return to_string(val);
@@ -615,4 +622,9 @@ string cppkit::ck_string_utils::uint64_to_s(uint64_t val)
 string cppkit::ck_string_utils::double_to_s(double val)
 {
     return ck_string_utils::format("%lf", val);
+}
+
+string cppkit::ck_string_utils::size_t_to_s(size_t val)
+{
+    return ck_string_utils::format("%zu", val);
 }

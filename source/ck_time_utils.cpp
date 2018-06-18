@@ -169,6 +169,154 @@ string cppkit::ck_time_utils::tp_to_iso_8601(const system_clock::time_point& tp,
 	return result;
 }
 
+milliseconds cppkit::ck_time_utils::iso_8601_period_to_duration(const string& str)
+{
+	auto dur = milliseconds::zero();
+
+	char designators[] = {'Y', 'M', 'W', 'D', 'T', 'H', 'M', 'S'};
+
+	size_t idx = 0;
+
+	auto prevDesig = 'P';
+
+	bool parsedDate = false;
+
+	for(size_t i = 0; i < 8; ++i)
+	{
+		auto didx = str.find(designators[i], idx);
+
+		if(didx != string::npos)
+		{
+			auto fieldStart = str.rfind(prevDesig, didx) + 1;
+
+			auto field = str.substr(fieldStart, (didx - fieldStart));
+
+            auto val = ck_string_utils::s_to_size_t(field);
+
+			if(!parsedDate)
+			{
+				switch(designators[i])
+				{
+					case 'Y'://YEARS
+						dur += hours(val * 8760);
+					break;
+					case 'M'://MONTHS
+						dur += hours(val * 720);
+					break;
+					case 'W'://WEEKS
+						dur += hours(val * 168);
+					break;
+					case 'D'://DAYS
+						dur += hours(val * 24);
+					break;
+					case 'T':
+						parsedDate = true;
+					break;
+                	default:
+                    	CK_THROW(("Unknown iso 8601 duration designator 1:"));
+            	};
+			}
+			else
+			{
+				switch(designators[i])
+				{
+					case 'H'://HOURS
+						dur += hours(val);
+					break;
+					case 'M'://MINUTES
+						dur += minutes(val);
+					break;
+					case 'S'://SECONDS
+					{
+						if(field.find(".") != std::string::npos)
+						{
+							auto val = ck_string_utils::s_to_double(field);
+							size_t wholeSeconds = (size_t)val;
+							double fracSeconds = val - wholeSeconds;
+							dur += seconds(wholeSeconds);
+							size_t millis = (size_t)(fracSeconds * (double)1000);
+							dur += milliseconds(millis);
+						}
+						else dur += seconds(val);
+					}
+					break;
+					default:
+						CK_THROW(("Unknown iso 8601 duration designator 2:"));
+				};
+			}
+
+			prevDesig = designators[i];
+		}
+	}
+
+	return dur;
+}
+
+string cppkit::ck_time_utils::duration_to_iso_8601_period(milliseconds d)
+{
+	string output = "P";
+
+    auto y = duration_cast<hours>(d).count() / 8760;
+    d -= hours(y * 8760);
+	if(y > 0)
+		output += ck_string_utils::format("%dY", y);
+
+    auto mo = duration_cast<hours>(d).count() / 720;
+    d -= hours(mo * 720);
+	if(mo > 0)
+		output += ck_string_utils::format("%dM", mo);
+
+    auto w = duration_cast<hours>(d).count() / 168;
+    d -= hours(w * 168);
+	if(w > 0)
+		output += ck_string_utils::format("%dW", w);
+
+    auto da = duration_cast<hours>(d).count() / 24;
+    d -= hours(da * 24);
+	if(da > 0)
+		output += ck_string_utils::format("%dD", da);
+
+    auto h = duration_cast<hours>(d).count();
+    d -= hours(h);
+
+    auto m = duration_cast<minutes>(d).count();
+    d -= minutes(m);
+
+    auto s = duration_cast<seconds>(d).count();
+    d -= seconds(s);
+
+    auto ms = duration_cast<milliseconds>(d).count();
+
+	if(h > 0 || m > 0 || s > 0 || ms > 0)
+		output += "T";
+
+	if(h > 0)
+		output += ck_string_utils::format("%dH", h);
+
+	if(m > 0)
+		output += ck_string_utils::format("%dM", m);
+
+	if(s > 0)
+		output += ck_string_utils::format("%lld", s);
+
+    if(ms > 0)
+    {
+		if(s == 0)
+			output += "0";
+
+    	auto frac = ck_string_utils::double_to_s((double)ms / 1000.f).substr(2);
+        frac.erase(frac.find_last_not_of('0') + 1, std::string::npos);
+		output += ck_string_utils::format(".%sS",frac.c_str());
+    }
+    else
+	{
+		if(s > 0)
+			output += "S";
+	}
+
+    return output;
+}
+
 uint64_t cppkit::ck_time_utils::tp_to_epoch_millis(const chrono::system_clock::time_point& tp)
 {
 	return duration_cast<milliseconds>(tp.time_since_epoch()).count();
