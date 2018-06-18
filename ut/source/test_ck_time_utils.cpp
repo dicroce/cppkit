@@ -61,6 +61,9 @@ void test_ck_time_utils::test_8601_period_to_duration()
 {
     {
         auto siny = hours(8760) + hours(720) + hours(168) + hours(24) + hours(1) + minutes(1) + seconds(1);
+
+        printf("e: %s\n", ck_time_utils::duration_to_iso_8601_period(ck_time_utils::iso_8601_period_to_duration("P1Y1M1W1DT1H1M1S")).c_str());
+
         RTF_ASSERT(siny == ck_time_utils::iso_8601_period_to_duration("P1Y1M1W1DT1H1M1S"));
     }
 
