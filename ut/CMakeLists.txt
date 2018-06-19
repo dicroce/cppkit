@@ -6,6 +6,7 @@ add_executable (cppkit_ut include/framework.h
                           include/test_ck_socket.h
                           include/test_ck_server_threaded.h
                           include/test_ck_file.h
+                          include/test_ck_pool.h
                           include/test_ck_uuid_utils.h
                           include/test_ck_time_utils.h
                           include/test_ck_blob_tree.h
@@ -15,6 +16,7 @@ add_executable (cppkit_ut include/framework.h
                           source/test_ck_socket.cpp
                           source/test_ck_server_threaded.cpp
                           source/test_ck_file.cpp
+                          source/test_ck_pool.cpp
                           source/test_ck_uuid_utils.cpp
                           source/test_ck_time_utils.cpp
                           source/test_ck_blob_tree.cpp)

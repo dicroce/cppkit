@@ -149,7 +149,7 @@ ck_path::path_parts ck_path::_get_path_and_glob(const string& glob) const
 
 }
 
-int cppkit::ck_fs::stat(const string& file_name, struct ck_file_info* file_info)
+int cppkit::ck_fs::stat(const string& file_name, struct ck_file_info* file_info, bool throwOnError)
 {
     struct stat sfi;
 
@@ -164,6 +164,20 @@ int cppkit::ck_fs::stat(const string& file_name, struct ck_file_info* file_info)
         file_info->modification_time = std::chrono::system_clock::from_time_t(sfi.st_mtime);
 
         return 0;
+    }
+    else
+    {
+        if(throwOnError)
+        {
+            switch(errno)
+            {
+                case ENOENT:
+                    CK_STHROW(ck_not_found_exception, ("%s not found.", file_name.c_str()));
+                break;
+                default:
+                    CK_THROW(("Unknown error occurred during state()."));
+            }
+        }
     }
 
     return -1;
@@ -224,7 +238,7 @@ void cppkit::ck_fs::atomic_rename_file(const string& oldPath, const string& newP
 bool cppkit::ck_fs::file_exists(const string& path)
 {
     struct cppkit::ck_fs::ck_file_info rfi;
-    return (cppkit::ck_fs::stat(path, &rfi) == 0) ? true : false;
+    return (cppkit::ck_fs::stat(path, &rfi, false) == 0) ? true : false;
 }
 
 bool cppkit::ck_fs::is_reg(const string& path)

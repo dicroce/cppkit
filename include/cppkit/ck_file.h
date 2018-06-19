@@ -101,7 +101,7 @@ struct ck_file_info
     std::chrono::system_clock::time_point modification_time;
 };
 
-int stat(const std::string& fileName, struct ck_file_info* fileInfo);
+int stat(const std::string& fileName, struct ck_file_info* fileInfo, bool throwOnError = true);
 std::vector<uint8_t> read_file(const std::string& path);
 void write_file(const uint8_t* bytes, size_t len, const std::string& path);
 void atomic_rename_file(const std::string& oldPath, const std::string& newPath);
