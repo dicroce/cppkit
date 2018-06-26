@@ -21,6 +21,7 @@ add_library (cppkit include/cppkit/ck_actor.h
                     include/cppkit/ck_string_utils.h
                     include/cppkit/ck_time_utils.h
                     include/cppkit/ck_uuid_utils.h
+                    include/cppkit/ck_args.h
                     source/ck_blob_tree.cpp
                     source/ck_exception.cpp
                     source/ck_file.cpp
@@ -31,7 +32,8 @@ add_library (cppkit include/cppkit/ck_actor.h
                     source/ck_stack_trace.cpp
                     source/ck_string_utils.cpp
                     source/ck_time_utils.cpp
-                    source/ck_uuid_utils.cpp)
+                    source/ck_uuid_utils.cpp
+                    source/ck_args.cpp)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     target_compile_definitions(cppkit PUBLIC IS_DARWIN)
