@@ -515,7 +515,17 @@ uint16_t cppkit::ck_networking::ck_ntohs(uint16_t x)
     return ntohs(x);
 }
 
+int16_t cppkit::ck_networking::ck_ntohs(int16_t x)
+{
+    return ntohs(x);
+}
+
 uint16_t cppkit::ck_networking::ck_htons(uint16_t x)
+{
+    return htons(x);
+}
+
+int16_t cppkit::ck_networking::ck_htons(int16_t x)
 {
     return htons(x);
 }
@@ -525,7 +535,17 @@ uint32_t cppkit::ck_networking::ck_ntohl(uint32_t x)
     return ntohl(x);
 }
 
+int32_t cppkit::ck_networking::ck_ntohl(int32_t x)
+{
+    return ntohl(x);
+}
+
 uint32_t cppkit::ck_networking::ck_htonl(uint32_t x)
+{
+    return htonl(x);
+}
+
+int32_t cppkit::ck_networking::ck_htonl(int32_t x)
 {
     return htonl(x);
 }
@@ -535,7 +555,17 @@ uint64_t cppkit::ck_networking::ck_ntohll(uint64_t x)
     return (((uint64_t) ntohl(x & 0xFFFFFFFF)) << 32LL) + ntohl(x >> 32);
 }
 
+int64_t cppkit::ck_networking::ck_ntohll(int64_t x)
+{
+    return (((int64_t) ntohl(x & 0xFFFFFFFF)) << 32LL) + ntohl(x >> 32);
+}
+
 uint64_t cppkit::ck_networking::ck_htonll(uint64_t x)
 {
     return (((uint64_t) htonl(x & 0xFFFFFFFF)) << 32LL) + htonl(x >> 32);
+}
+
+int64_t cppkit::ck_networking::ck_htonll(int64_t x)
+{
+    return (((int64_t) htonl(x & 0xFFFFFFFF)) << 32LL) + htonl(x >> 32);
 }

@@ -302,16 +302,22 @@ std::vector<uint8_t> ck_get_hardware_address(const std::string& ifname);
 std::string ck_get_device_uuid(const std::string& ifname);
 
 uint16_t ck_ntohs(uint16_t x);
+int16_t ck_ntohs(int16_t x);
 
 uint16_t ck_htons(uint16_t x);
+int16_t ck_htons(int16_t x);
 
 uint32_t ck_ntohl(uint32_t x);
+int32_t ck_ntohl(int32_t x);
 
 uint32_t ck_htonl(uint32_t x);
+int32_t ck_htonl(int32_t x);
 
 uint64_t ck_ntohll(uint64_t x);
+int64_t ck_ntohll(int64_t x);
 
 uint64_t ck_htonll(uint64_t x);
+int64_t ck_htonll(int64_t x);
 
 }
 
