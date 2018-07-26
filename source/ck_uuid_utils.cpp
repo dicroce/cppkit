@@ -21,7 +21,7 @@ string cppkit::ck_uuid_utils::generate()
 string cppkit::ck_uuid_utils::uuid_to_s(const uint8_t* uuid)
 {
     char str[37];
-    uuid_unparse(uuid, str);
+    uuid_unparse_lower(uuid, str);
     return str;
 }
 
