@@ -1,6 +1,7 @@
 
 #include "test_ck_memory_map.h"
 #include "cppkit/ck_memory_map.h"
+#include <cstring>
 
 using namespace std;
 using namespace cppkit;
