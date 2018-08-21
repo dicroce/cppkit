@@ -49,7 +49,15 @@ vector<args::argument> cppkit::args::parse_arguments(int argc, char* argv[])
     return arguments;
 }
 
-ck_nullable<string> cppkit::args::get_argument(const vector<argument>& arguments, const string& opt)
+string cppkit::args::get_required_argument(const vector<argument>& arguments, const string& opt, const string& msg)
+{
+    auto arg = get_optional_argument(arguments, opt);
+    if(arg.is_null())
+        CK_THROW(((msg.length()!=0)?msg:ck_string_utils::format("Required argument %s missing.", opt.c_str())));
+    return arg.value();
+}
+
+ck_nullable<string> cppkit::args::get_optional_argument(const vector<argument>& arguments, const string& opt)
 {
     ck_nullable<string> result;
     string val;
