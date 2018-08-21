@@ -57,12 +57,15 @@ string cppkit::args::get_required_argument(const vector<argument>& arguments, co
     return arg.value();
 }
 
-ck_nullable<string> cppkit::args::get_optional_argument(const vector<argument>& arguments, const string& opt)
+ck_nullable<string> cppkit::args::get_optional_argument(const vector<argument>& arguments, const string& opt, const std::string& def)
 {
     ck_nullable<string> result;
     string val;
     if(cppkit::args::check_argument(arguments, opt, val))
         result.set_value(val);
+    else if(def.length() != 0)
+        result.set_value(def);
+
     return result;
 }
 

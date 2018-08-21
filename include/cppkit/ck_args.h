@@ -21,7 +21,7 @@ struct argument
 std::vector<argument> parse_arguments(int argc, char* argv[] );
 
 std::string get_required_argument(const std::vector<argument>& arguments, const std::string& opt, const std::string& msg = "");
-ck_nullable<std::string> get_optional_argument(const std::vector<argument>& arguments, const std::string& opt);
+ck_nullable<std::string> get_optional_argument(const std::vector<argument>& arguments, const std::string& opt, const std::string& def = "");
 
 bool check_argument(const std::vector<argument>& arguments, const std::string& opt, std::string& arg);
 bool check_argument(const std::vector<argument>& arguments, const std::string& opt);
