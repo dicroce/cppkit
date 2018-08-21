@@ -49,6 +49,15 @@ vector<args::argument> cppkit::args::parse_arguments(int argc, char* argv[])
     return arguments;
 }
 
+ck_nullable<string> cppkit::args::get_argument(const vector<argument>& arguments, const string& opt)
+{
+    ck_nullable<string> result;
+    string val;
+    if(cppkit::args::check_argument(arguments, opt, val))
+        result.set_value(val);
+    return result;
+}
+
 bool cppkit::args::check_argument(const vector<args::argument>& arguments, const string& opt, string& arg)
 {
     vector<argument>::const_iterator i;
