@@ -120,7 +120,7 @@ void mkdir(const std::string& path);
 // set on the stream. NOTE: It looks like fwrite() can return 0 items written but have actually written
 // some data to the file!
 template<typename T, typename F>
-void write_file(const T* p, size_t size, F f, size_t blockSize = 4096)
+void write_file(const T* p, size_t size, F& f, size_t blockSize = 4096)
 {
     size_t blocks = (size >= blockSize)?size / blockSize:0;
     size_t remainder = (size >= blockSize)?size % blockSize:size;
@@ -148,7 +148,7 @@ void write_file(const T* p, size_t size, F f, size_t blockSize = 4096)
 // GLIBC fread() loops until it has read the requested number of bytes OR the lower level __read
 // returns 0. If the lower level __read returns 0 the EOF flag is set on the stream.
 template<typename T, typename F>
-void read_file(T* p, size_t size, F f, size_t blockSize = 4096)
+void read_file(T* p, size_t size, F& f, size_t blockSize = 4096)
 {
     size_t blocks = (size >= blockSize)?size / blockSize:0;
     size_t remainder = (size >= blockSize)?size % blockSize:size;
