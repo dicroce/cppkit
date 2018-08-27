@@ -104,15 +104,10 @@ void ck_memory_map_test::test_persist_to_disk()
     {
         memset( buffer, 1, 4096 );
 
-        uint32_t blocksJustRead = fread( buffer, 4096, 1, dataFile );
-
-        if( blocksJustRead > 0 )
-        {
-            blocksToRead -= blocksJustRead;
-
-            for( uint32_t i = 0; i < 4096; i++ )
-                UT_ASSERT( buffer[i] == 0 );
-        }
+        ck_fs::read_file(buffer, 4096, dataFile);
+        --blocksToRead;
+        for( uint32_t i = 0; i < 4096; i++ )
+            UT_ASSERT( buffer[i] == 0 );
     }
 
     fclose( dataFile );

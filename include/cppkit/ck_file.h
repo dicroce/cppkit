@@ -115,6 +115,61 @@ void get_fs_usage(const std::string& path, uint64_t& size, uint64_t& free);
 uint64_t file_size(const std::string& path);
 void mkdir(const std::string& path);
 
+// GLIBC fwrite() attempts to write the requested number of bytes and returns the number of items
+// successfully written. If GLIBC fwrite() is unable to write any bytes at all the error flag is
+// set on the stream. NOTE: It looks like fwrite() can return 0 items written but have actually written
+// some data to the file!
+template<typename T, typename F>
+void write_file(const T* p, size_t size, F f, size_t blockSize = 4096)
+{
+    size_t blocks = (size >= blockSize)?size / blockSize:0;
+    size_t remainder = (size >= blockSize)?size % blockSize:size;
+    const uint8_t* writeHead = (const uint8_t*)p;
+
+    while(blocks > 0)
+    {
+        auto blocksWritten = fwrite((void*)writeHead, blockSize, blocks, f);
+        if(blocksWritten == 0)
+            CK_THROW(("Unable to write to file."));
+        blocks -= blocksWritten;
+        writeHead += (blocksWritten * blockSize);
+    }
+
+    while(remainder > 0)
+    {
+        auto bytesWritten = fwrite((void*)writeHead, 1, remainder, f);
+        if(bytesWritten == 0)
+            CK_THROW(("Could not write to file."))
+        remainder -= bytesWritten;
+        writeHead += bytesWritten;
+    }
+}
+
+// GLIBC fread() loops until it has read the requested number of bytes OR the lower level __read
+// returns 0. If the lower level __read returns 0 the EOF flag is set on the stream.
+template<typename T, typename F>
+void read_file(T* p, size_t size, F f, size_t blockSize = 4096)
+{
+    size_t blocks = (size >= blockSize)?size / blockSize:0;
+    size_t remainder = (size >= blockSize)?size % blockSize:size;
+    uint8_t* readHead = (uint8_t*)p;
+
+    if(blocks > 0)
+    {
+        auto blocksRead = fread((void*)readHead, blockSize, blocks, f);
+        if(blocksRead != blocks)
+            CK_THROW(("Short fread(). Implies feof()."));
+        readHead += (blocksRead * blockSize);
+    }
+
+    if(remainder > 0)
+    {
+        auto bytesRead = fread((void*)readHead, 1, remainder, f);
+        if(bytesRead != remainder)
+            CK_THROW(("Short fread(). Indicates feof()"));
+    }
+}
+
 }
 
 }

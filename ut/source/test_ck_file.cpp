@@ -23,8 +23,8 @@ void test_ck_file::setup()
 
     unsigned char buf[128];
     memset( buf, 0, 128 );
-    fwrite( buf, 1, 128, regularFile );
-    fwrite( buf, 1, 128, unicodeFile );
+    ck_fs::write_file(buf, 128, regularFile);
+    ck_fs::write_file(buf, 128, unicodeFile);
     fclose( regularFile );
     fclose( unicodeFile );
 }
@@ -122,11 +122,11 @@ void test_ck_file::test_file_size()
     FILE* f = fopen( ("fs_root" + ck_fs::PATH_SLASH + "reg").c_str(), "wb" );
     uint8_t buf[1024];
     memset(buf, 0, sizeof(buf));
-    fwrite( &buf, 1, 1024, f );
+    ck_fs::write_file(&buf[0], 1024, f);
     fclose( f );
 
     f = fopen( ("fs_root" + ck_fs::PATH_SLASH + "a" + ck_fs::PATH_SLASH + "reg").c_str(), "wb" );
-    fwrite( &buf, 1, 1024, f );
+    ck_fs::write_file(&buf[0], 1024, f);
     fclose( f );
 
     RTF_ASSERT( ck_fs::file_size( "fs_root" ) == 2048 );
