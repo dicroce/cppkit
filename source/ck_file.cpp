@@ -175,9 +175,31 @@ int cppkit::ck_fs::stat(const string& file_name, struct ck_file_info* file_info,
                     CK_STHROW(ck_not_found_exception, ("%s not found.", file_name.c_str()));
                 break;
                 default:
-                    CK_THROW(("Unknown error occurred during state()."));
+                    CK_THROW(("Unknown error occurred during stat()."));
             }
         }
+    }
+
+    return -1;
+}
+
+int cppkit::ck_fs::fstat(FILE* f, struct ck_file_info* fileInfo, bool throwOnError)
+{
+    struct stat sfi;
+    if(fstat(fileno(f), &sfi) == 0)
+    {
+        fileInfo->file_size = sfi.st_size;
+        fileInfo->file_type = (sfi.st_mode & S_IFDIR) ? CK_DIRECTORY : CK_REGULAR;
+        fileInfo->optimal_block_size = sfi.st_blksize;
+        fileInfo->access_time = std::chrono::system_clock::from_time_t(sfi.st_atime);
+        fileInfo->modification_time = std::chrono::system_clock::from_time_t(sfi.st_mtime);
+
+        return 0;
+    }
+    else
+    {
+        if(throwOnError)
+            CK_THROW(("Unknown error occurred during stat()."));
     }
 
     return -1;
