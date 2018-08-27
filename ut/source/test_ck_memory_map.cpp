@@ -101,7 +101,7 @@ void test_ck_memory_map::test_persist_to_disk()
     {
         memset(buffer, 1, 4096);
 
-        ck_fs::read_file(buffer, 4096, dataFile);
+        ck_fs::block_read_file(buffer, 4096, dataFile);
         --blocksToRead;
 
         for(uint32_t i = 0; i < 4096; i++)
