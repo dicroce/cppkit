@@ -562,6 +562,13 @@ double cppkit::ck_string_utils::s_to_double(const string& s)
     return val;
 }
 
+float cppkit::ck_string_utils::s_to_float(const string& s)
+{
+    float val;
+    sscanf(s.c_str(), "%f", &val);
+    return val;
+}
+
 size_t cppkit::ck_string_utils::s_to_size_t(const string& s)
 {
     size_t val;
@@ -622,6 +629,11 @@ string cppkit::ck_string_utils::uint64_to_s(uint64_t val)
 string cppkit::ck_string_utils::double_to_s(double val)
 {
     return ck_string_utils::format("%lf", val);
+}
+
+string cppkit::ck_string_utils::float_to_s(float val)
+{
+    return ck_string_utils::format("%f", val);
 }
 
 string cppkit::ck_string_utils::size_t_to_s(size_t val)
