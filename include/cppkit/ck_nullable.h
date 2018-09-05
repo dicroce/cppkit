@@ -79,6 +79,12 @@ public:
         _is_null = false;
     }
 
+    void set_value( T&& value )
+    {
+        _value = value;
+        _is_null = false;
+    }
+
     bool is_null() const
     {
         return _is_null;
