@@ -2,6 +2,8 @@
 #ifndef cppkit_ck_functional_h
 #define cppkit_ck_functional_h
 
+#include "cppkit/ck_exception.h"
+
 #include <vector>
 #include <algorithm>
 #include <type_traits>
@@ -73,6 +75,37 @@ void erase_if(CONT& c, const PRED& p)
             it = c.erase(it);
         else ++it;
     }
+}
+
+template<typename CMP>
+uint8_t* lower_bound_bytes(uint8_t* start,
+                           uint8_t* end,
+                           uint8_t* target,
+                           size_t elementSize,
+                           CMP cmp )
+{
+    if( (start >= end) || ((end-start) < elementSize) )
+        CK_THROW(("Empty array!"));
+
+    uint64_t len = (end-start)/elementSize;
+    uint64_t half;
+    uint8_t* middle;
+
+    while( len > 0 )
+    {
+        half = len >> 1;
+        middle = start;
+        middle += half * elementSize;
+        if( cmp( middle, target ) == -1 )
+        {
+            start = middle;
+            start += elementSize;
+            len = len - half - 1;
+        }
+        else len = half;
+    }
+
+    return start;
 }
 
 }
