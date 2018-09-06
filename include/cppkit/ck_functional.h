@@ -84,7 +84,7 @@ uint8_t* lower_bound_bytes(uint8_t* start,
                            size_t elementSize,
                            CMP cmp )
 {
-    if( (start >= end) || ((end-start) < elementSize) )
+    if( (start >= end) || ((uint64_t)(end-start) < elementSize) )
         CK_THROW(("Empty array!"));
 
     uint64_t len = (end-start)/elementSize;
