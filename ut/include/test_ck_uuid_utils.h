@@ -9,6 +9,7 @@ public:
       TEST(test_ck_uuid::test_generate);
       TEST(test_ck_uuid::test_uuid_to_s);
       TEST(test_ck_uuid::test_s_to_uuid);
+      TEST(test_ck_uuid::test_cmp);
     RTF_FIXTURE_END();
 
     virtual ~test_ck_uuid() throw() {}
@@ -19,4 +20,5 @@ public:
     void test_generate();
     void test_uuid_to_s();
     void test_s_to_uuid();
+    void test_cmp();
 };

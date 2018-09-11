@@ -57,3 +57,42 @@ void test_ck_uuid::test_s_to_uuid()
     RTF_ASSERT(buffer[14] == 0x02);
     RTF_ASSERT(buffer[15] == 0x6c);    
 }
+
+void test_ck_uuid::test_cmp()
+{
+    {
+        uint8_t bufferA[16];
+        memset(&bufferA[0], 0, 16);
+        ck_uuid_utils::s_to_uuid("22b11978-dd19-4fa7-864c-84bd7ca402d2", bufferA);
+
+        uint8_t bufferB[16];
+        memset(&bufferB[0], 0, 16);
+        ck_uuid_utils::s_to_uuid("feac6e8c-187b-4520-b410-b19269797fc7", bufferB);
+
+        RTF_ASSERT(ck_uuid_utils::uuid_cmp(&bufferA[0], &bufferB[0]) == -1);
+    }
+
+    {
+        uint8_t bufferA[16];
+        memset(&bufferA[0], 0, 16);
+        ck_uuid_utils::s_to_uuid("22b11978-dd19-4fa7-864c-84bd7ca402d2", bufferA);
+
+        uint8_t bufferB[16];
+        memset(&bufferB[0], 0, 16);
+        ck_uuid_utils::s_to_uuid("22b11978-dd19-4fa7-864c-84bd7ca402d2", bufferB);
+
+        RTF_ASSERT(ck_uuid_utils::uuid_cmp(&bufferA[0], &bufferB[0]) == 0);
+    }
+
+    {
+        uint8_t bufferA[16];
+        memset(&bufferA[0], 0, 16);
+        ck_uuid_utils::s_to_uuid("feac6e8c-187b-4520-b410-b19269797fc7", bufferA);
+
+        uint8_t bufferB[16];
+        memset(&bufferB[0], 0, 16);
+        ck_uuid_utils::s_to_uuid("22b11978-dd19-4fa7-864c-84bd7ca402d2", bufferB);
+
+        RTF_ASSERT(ck_uuid_utils::uuid_cmp(&bufferA[0], &bufferB[0]) == 1);
+    }
+}

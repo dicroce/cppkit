@@ -30,3 +30,8 @@ void cppkit::ck_uuid_utils::s_to_uuid(const string& uuidS, uint8_t* uuid)
     if(uuid_parse(uuidS.c_str(), uuid) != 0)
         CK_STHROW(ck_invalid_argument_exception, ("Unable to parse uuid string."));
 }
+
+int cppkit::ck_uuid_utils::uuid_cmp(const uint8_t* uu1, const uint8_t* uu2)
+{
+    return uuid_compare(uu1, uu2);
+}

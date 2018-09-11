@@ -16,6 +16,7 @@ void generate(uint8_t* uuid);
 std::string generate();
 std::string uuid_to_s(const uint8_t* uuid);
 void s_to_uuid(const std::string& uuidS, uint8_t* uuid);
+int uuid_cmp(const uint8_t* uu1, const uint8_t* uu2);
 
 }
 
