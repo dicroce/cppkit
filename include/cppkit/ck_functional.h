@@ -108,6 +108,15 @@ uint8_t* lower_bound_bytes(uint8_t* start,
     return start;
 }
 
+template<typename C, typename V>
+bool in(const C& c, const V& v)
+{
+    for(auto val : c)
+        if(val == v)
+            return true;
+    return false;
+}
+
 }
 
 }
