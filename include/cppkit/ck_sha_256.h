@@ -32,6 +32,8 @@ private:
     SHA256_CTX _sha256;
 };
 
+std::string sha_256(const uint8_t* p, size_t sz);
+
 }
 
 #endif

@@ -62,3 +62,11 @@ string ck_sha_256::get_as_string()
                                     _digest[24], _digest[25], _digest[26], _digest[27],
                                     _digest[28], _digest[29], _digest[30], _digest[31] );
 }
+
+string cppkit::sha_256(const uint8_t* p, size_t sz)
+{
+    ck_sha_256 h;
+    h.update(p, sz);
+    h.finalize();
+    return h.get_as_string();
+}

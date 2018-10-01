@@ -12,6 +12,7 @@ public:
       TEST(test_ck_file::test_open_path);
       TEST(test_ck_file::test_path_iter);
       TEST(test_ck_file::test_file_size);
+      TEST(test_ck_file::test_break_path);
     RTF_FIXTURE_END();
 
     virtual ~test_ck_file() throw() {}
@@ -25,4 +26,5 @@ public:
     void test_open_path();
     void test_path_iter();
     void test_file_size();
+    void test_break_path();
 };

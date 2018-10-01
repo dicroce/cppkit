@@ -140,3 +140,26 @@ void test_ck_file::test_file_size()
     rmdir( ("fs_root" + ck_fs::PATH_SLASH + "d").c_str() );
     rmdir( "fs_root" );
 }
+
+void test_ck_file::test_break_path()
+{
+    {
+        string path, fileName;
+        ck_fs::break_path("/foo/bar/baz", path, fileName);
+        RTF_ASSERT(path == "/foo/bar/");
+        RTF_ASSERT(fileName == "baz");
+    }
+    {
+        string path, fileName;
+        ck_fs::break_path("/foo/bar/", path, fileName);
+        RTF_ASSERT(path == "/foo/bar/");
+        RTF_ASSERT(fileName == string());
+    }
+    {
+        string path, fileName;
+        ck_fs::break_path("filename", path, fileName);
+        RTF_ASSERT(path == string());
+        RTF_ASSERT(fileName == "filename");
+    }
+
+}
