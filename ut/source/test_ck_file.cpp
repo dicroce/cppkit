@@ -146,14 +146,8 @@ void test_ck_file::test_break_path()
     {
         string path, fileName;
         ck_fs::break_path("/foo/bar/baz", path, fileName);
-        RTF_ASSERT(path == "/foo/bar/");
+        RTF_ASSERT(path == "/foo/bar");
         RTF_ASSERT(fileName == "baz");
-    }
-    {
-        string path, fileName;
-        ck_fs::break_path("/foo/bar/", path, fileName);
-        RTF_ASSERT(path == "/foo/bar/");
-        RTF_ASSERT(fileName == string());
     }
     {
         string path, fileName;

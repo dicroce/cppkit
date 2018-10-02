@@ -26,6 +26,8 @@
 
 #if !defined(FASTLZ__COMPRESSOR) && !defined(FASTLZ_DECOMPRESSOR)
 
+#include <cstdint>
+
 /*
  * Always check for bound when decompressing.
  * Generally it is best to leave it defined.
@@ -82,9 +84,9 @@ typedef unsigned short flzuint16;
 typedef unsigned int   flzuint32;
 
 /* prototypes */
-int fastlz_compress(const void* input, int length, void* output);
-int fastlz_compress_level(int level, const void* input, int length, void* output);
-int fastlz_decompress(const void* input, int length, void* output, int maxout);
+uint64_t fastlz_compress(const void* input, uint64_t length, void* output);
+uint64_t fastlz_compress_level(int level, const void* input, uint64_t length, void* output);
+uint64_t fastlz_decompress(const void* input, uint64_t length, void* output, uint64_t maxout);
 
 #define MAX_COPY       32
 #define MAX_LEN       264  /* 256 + 8 */
@@ -108,9 +110,9 @@ int fastlz_decompress(const void* input, int length, void* output, int maxout);
 #undef FASTLZ_DECOMPRESSOR
 #define FASTLZ_COMPRESSOR fastlz1_compress
 #define FASTLZ_DECOMPRESSOR fastlz1_decompress
-static FASTLZ_INLINE int FASTLZ_COMPRESSOR(const void* input, int length, void* output);
-static FASTLZ_INLINE int FASTLZ_DECOMPRESSOR(const void* input, int length, void* output, int maxout);
-#include "fastlz.c"
+static FASTLZ_INLINE uint64_t FASTLZ_COMPRESSOR(const void* input, uint64_t length, void* output);
+static FASTLZ_INLINE uint64_t FASTLZ_DECOMPRESSOR(const void* input, uint64_t length, void* output, uint64_t maxout);
+#include "fastlz.cpp"
 
 #undef FASTLZ_LEVEL
 #define FASTLZ_LEVEL 2
@@ -123,11 +125,11 @@ static FASTLZ_INLINE int FASTLZ_DECOMPRESSOR(const void* input, int length, void
 #undef FASTLZ_DECOMPRESSOR
 #define FASTLZ_COMPRESSOR fastlz2_compress
 #define FASTLZ_DECOMPRESSOR fastlz2_decompress
-static FASTLZ_INLINE int FASTLZ_COMPRESSOR(const void* input, int length, void* output);
-static FASTLZ_INLINE int FASTLZ_DECOMPRESSOR(const void* input, int length, void* output, int maxout);
-#include "fastlz.c"
+static FASTLZ_INLINE uint64_t FASTLZ_COMPRESSOR(const void* input, uint64_t length, void* output);
+static FASTLZ_INLINE uint64_t FASTLZ_DECOMPRESSOR(const void* input, uint64_t length, void* output, uint64_t maxout);
+#include "fastlz.cpp"
 
-int fastlz_compress(const void* input, int length, void* output)
+uint64_t fastlz_compress(const void* input, uint64_t length, void* output)
 {
   /* for short block, choose fastlz1 */
   if(length < 65536)
@@ -137,7 +139,7 @@ int fastlz_compress(const void* input, int length, void* output)
   return fastlz2_compress(input, length, output);
 }
 
-int fastlz_decompress(const void* input, int length, void* output, int maxout)
+uint64_t fastlz_decompress(const void* input, uint64_t length, void* output, uint64_t maxout)
 {
   /* magic identifier for compression level */
   int level = ((*(const flzuint8*)input) >> 5) + 1;
@@ -151,7 +153,7 @@ int fastlz_decompress(const void* input, int length, void* output, int maxout)
   return 0;
 }
 
-int fastlz_compress_level(int level, const void* input, int length, void* output)
+uint64_t fastlz_compress_level(int level, const void* input, uint64_t length, void* output)
 {
   if(level == 1)
     return fastlz1_compress(input, length, output);
@@ -163,7 +165,7 @@ int fastlz_compress_level(int level, const void* input, int length, void* output
 
 #else /* !defined(FASTLZ_COMPRESSOR) && !defined(FASTLZ_DECOMPRESSOR) */
 
-static FASTLZ_INLINE int FASTLZ_COMPRESSOR(const void* input, int length, void* output)
+static FASTLZ_INLINE uint64_t FASTLZ_COMPRESSOR(const void* input, uint64_t length, void* output)
 {
   const flzuint8* ip = (const flzuint8*) input;
   const flzuint8* ip_bound = ip + length - 2;
@@ -417,14 +419,14 @@ static FASTLZ_INLINE int FASTLZ_COMPRESSOR(const void* input, int length, void* 
   return op - (flzuint8*)output;
 }
 
-static FASTLZ_INLINE int FASTLZ_DECOMPRESSOR(const void* input, int length, void* output, int maxout)
+static FASTLZ_INLINE uint64_t FASTLZ_DECOMPRESSOR(const void* input, uint64_t length, void* output, uint64_t maxout)
 {
   const flzuint8* ip = (const flzuint8*) input;
   const flzuint8* ip_limit  = ip + length;
   flzuint8* op = (flzuint8*) output;
   flzuint8* op_limit = op + maxout;
   flzuint32 ctrl = (*ip++) & 31;
-  int loop = 1;
+  uint64_t loop = 1;
 
   do
   {

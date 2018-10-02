@@ -37,7 +37,7 @@ add_library (cppkit include/cppkit/ck_actor.h
                     source/ck_uuid_utils.cpp
                     source/ck_args.cpp
                     source/ck_memory_map.cpp
-                    source/fastlz.c)
+                    source/fastlz.cpp)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     target_compile_definitions(cppkit PUBLIC IS_DARWIN)

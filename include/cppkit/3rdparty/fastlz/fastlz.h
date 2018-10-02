@@ -27,6 +27,8 @@
 #ifndef FASTLZ_H
 #define FASTLZ_H
 
+#include <cstdint>
+
 #define FASTLZ_VERSION 0x000100
 
 #define FASTLZ_VERSION_MAJOR     0
@@ -34,10 +36,6 @@
 #define FASTLZ_VERSION_REVISION  0
 
 #define FASTLZ_VERSION_STRING "0.1.0"
-
-#if defined (__cplusplus)
-extern "C" {
-#endif
 
 /**
   Compress a block of data in the input buffer and returns the size of 
@@ -53,7 +51,7 @@ extern "C" {
   The input buffer and the output buffer can not overlap.
 */
 
-int fastlz_compress(const void* input, int length, void* output);
+uint64_t fastlz_compress(const void* input, uint64_t length, void* output);
 
 /**
   Decompress a block of compressed data and returns the size of the 
@@ -67,7 +65,7 @@ int fastlz_compress(const void* input, int length, void* output);
   more than what is specified in maxout.
  */
 
-int fastlz_decompress(const void* input, int length, void* output, int maxout); 
+uint64_t fastlz_decompress(const void* input, uint64_t length, void* output, uint64_t maxout); 
 
 /**
   Compress a block of data in the input buffer and returns the size of 
@@ -91,10 +89,6 @@ int fastlz_decompress(const void* input, int length, void* output, int maxout);
   decompressed using the function fastlz_decompress above.
 */  
 
-int fastlz_compress_level(int level, const void* input, int length, void* output);
-
-#if defined (__cplusplus)
-}
-#endif
+uint64_t fastlz_compress_level(int level, const void* input, uint64_t length, void* output);
 
 #endif /* FASTLZ_H */
