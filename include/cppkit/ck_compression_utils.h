@@ -1,6 +1,6 @@
 
-#ifndef cppkit_ck_uuid_utils_h
-#define cppkit_ck_uuid_utils_h
+#ifndef cppkit_ck_compression_utils_h
+#define cppkit_ck_compression_utils_h
 
 #include <cstdint>
 
