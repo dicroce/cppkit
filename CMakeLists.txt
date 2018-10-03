@@ -23,6 +23,7 @@ add_library (cppkit include/cppkit/ck_actor.h
                     include/cppkit/ck_uuid_utils.h
                     include/cppkit/ck_args.h
                     include/cppkit/ck_memory_map.h
+                    include/cppkit/ck_compression_utils.h
                     include/cppkit/3rdparty/fastlz/fastlz.h
                     source/ck_blob_tree.cpp
                     source/ck_exception.cpp
@@ -37,6 +38,7 @@ add_library (cppkit include/cppkit/ck_actor.h
                     source/ck_uuid_utils.cpp
                     source/ck_args.cpp
                     source/ck_memory_map.cpp
+                    source/ck_compression_utils.cpp
                     source/fastlz.cpp)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
@@ -59,7 +61,8 @@ find_library(CRYPTO_LIBRARY crypto)
 find_library(DL_LIBRARY dl)
 find_library(PTHREAD_LIBRARY pthread)
 find_library(UUID_LIBRARY uuid)
+find_package(BZip2)
 
-target_link_libraries (cppkit ${PTHREAD_LIBRARY} ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${DL_LIBRARY} ${UUID_LIBRARY})
+target_link_libraries (cppkit ${PTHREAD_LIBRARY} ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${DL_LIBRARY} ${UUID_LIBRARY} bz2)
 
 add_subdirectory(ut)

@@ -1,9 +1,11 @@
 
 #include "test_fastlz.h"
 #include "cppkit/ck_sha_256.h"
+#include "cppkit/ck_compression_utils.h"
 #include "cppkit/3rdparty/fastlz/fastlz.h"
 
 using namespace std;
+using namespace cppkit;
 
 REGISTER_TEST_FIXTURE(test_fastlz);
 
@@ -74,6 +76,27 @@ void test_fastlz::test_compress_basic()
     vector<uint8_t> dbuffer(534);
 
     sz = fastlz_decompress(&cbuffer[0], sz, &dbuffer[0], dbuffer.size());
+
+    RTF_ASSERT(sz == data_len);
+
+    auto oh = cppkit::sha_256(&data[0], data_len);
+    auto ch = cppkit::sha_256(&dbuffer[0], sz);
+
+    RTF_ASSERT(oh == ch);
+}
+
+void test_fastlz::test_compress_bz2()
+{
+    vector<uint8_t> cbuffer(534);
+
+    auto sz = ck_compression_utils::compress_buffer(&data[0], data_len, &cbuffer[0], 534);
+
+    RTF_ASSERT(sz >= 0);
+    RTF_ASSERT(sz < data_len);
+
+    vector<uint8_t> dbuffer(534);
+
+    sz = ck_compression_utils::decompress_buffer(&cbuffer[0], sz, &dbuffer[0], dbuffer.size());
 
     RTF_ASSERT(sz == data_len);
 
