@@ -8,28 +8,6 @@
 using namespace cppkit;
 using namespace std;
 
-#if 0
-typedef 
-   struct {
-      char *next_in;
-      unsigned int avail_in;
-      unsigned int total_in_lo32;
-      unsigned int total_in_hi32;
-
-      char *next_out;
-      unsigned int avail_out;
-      unsigned int total_out_lo32;
-      unsigned int total_out_hi32;
-
-      void *state;
-
-      void *(*bzalloc)(void *,int,int);
-      void (*bzfree)(void *,void *);
-      void *opaque;
-   } 
-   bz_stream;
-#endif
-
 uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint64_t srcLen, uint8_t* dst, uint64_t dstLen)
 {
     uint64_t totalIn = 0;
@@ -40,10 +18,20 @@ uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint6
         bz_stream bzs;
         memset(&bzs, 0, sizeof(bz_stream));
 
-        BZ2_bzCompressInit(&bzs, 9, 0, 30);
+        /* 1 - 9; 9 gives the best compression but uses the most runtime memory*/
+        const int blockSize = 9;
+        
+        /*1 - 4; 4 gives the most diagnostic info*/
+        int verbosity = 0;
 
-        // Before each call to BZ2_bzCompress, next_in should point at the data to be compressed, and avail_in should indicate how many bytes the library may read. BZ2_bzCompress updates 
-        // next_in, avail_in and total_in to reflect the number of bytes it has read.
+        /*30 is suggested; see docs for bzip2 for full info*/
+        int workFactor = 30;
+
+        BZ2_bzCompressInit(&bzs, blockSize, verbosity, workFactor);
+
+        // Before each call to BZ2_bzCompress, next_in should point at the data to be compressed, and
+        // avail_in should indicate how many bytes the library may read. BZ2_bzCompress updates next_in,
+        // avail_in and total_in to reflect the number of bytes it has read.
 
         auto s = const_cast<uint8_t*>(src);
         auto d = dst;
@@ -123,46 +111,3 @@ uint64_t cppkit::ck_compression_utils::decompress_buffer(const uint8_t* src, uin
 
     return totalOut;
 }
-
-
-#if 0
-
-    BZ2_bzCompressInit()
-    BZ2_bzCompress()
-    BZ2_bzCompressEnd()
-
-    BZ2_bzDecompressInit()
-    BZ2_bzDecompress()
-    BZ2_bzDecompressEnd()
-
-
-
-
-
- /* 1 - 9; 9 gives the best compression but uses the most runtime memory*/
-    int blockSize = 9;
-    /*1 - 4; 4 gives the most diagnostic info*/
-    int verbosity = 0;
-    /*30 is suggested; see docs for bzip2 for full info*/
-    int workFactor = 30;
-    int headerOffset;
-
-BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffCompress) ( 
-      char*         dest, 
-      unsigned int* destLen,
-      char*         source, 
-      unsigned int  sourceLen,
-      int           blockSize100k, 
-      int           verbosity, 
-      int           workFactor 
-   );
-
-BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffDecompress) ( 
-      char*         dest, 
-      unsigned int* destLen,
-      char*         source, 
-      unsigned int  sourceLen,
-      int           small, 
-      int           verbosity 
-   );
-#endif
