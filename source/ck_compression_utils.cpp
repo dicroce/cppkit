@@ -3,12 +3,11 @@
 #include "cppkit/ck_exception.h"
 #include <string.h>
 #include <bzlib.h>
-#include <climits>
 
 using namespace cppkit;
 using namespace std;
 
-uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint64_t srcLen, uint8_t* dst, uint64_t dstLen)
+uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint64_t srcLen, uint8_t* dst, uint64_t dstLen, uint32_t blockSize, const std::function<void(uint64_t)>& cb)
 {
     uint64_t totalIn = 0;
     uint64_t totalOut = 0;
@@ -19,7 +18,7 @@ uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint6
         memset(&bzs, 0, sizeof(bz_stream));
 
         /* 1 - 9; 9 gives the best compression but uses the most runtime memory*/
-        const int blockSize = 9;
+        const int ebs = 9;
         
         /*1 - 4; 4 gives the most diagnostic info*/
         int verbosity = 0;
@@ -27,7 +26,7 @@ uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint6
         /*30 is suggested; see docs for bzip2 for full info*/
         int workFactor = 30;
 
-        BZ2_bzCompressInit(&bzs, blockSize, verbosity, workFactor);
+        BZ2_bzCompressInit(&bzs, ebs, verbosity, workFactor);
 
         // Before each call to BZ2_bzCompress, next_in should point at the data to be compressed, and
         // avail_in should indicate how many bytes the library may read. BZ2_bzCompress updates next_in,
@@ -40,16 +39,19 @@ uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint6
         do
         {
             bzs.next_in = (char*)(s + totalIn);
-            bzs.avail_in = (srcLen >= UINT_MAX)?UINT_MAX:srcLen;
+            bzs.avail_in = (srcLen >= blockSize)?blockSize:srcLen;
             bzs.next_out = (char*)(d + totalOut);
-            bzs.avail_out = (dstLen >= UINT_MAX)?UINT_MAX:dstLen;
+            bzs.avail_out = (dstLen >= blockSize)?blockSize:dstLen;
 
-            ret = BZ2_bzCompress(&bzs, (srcLen >= UINT_MAX)?BZ_RUN:BZ_FINISH);
+            ret = BZ2_bzCompress(&bzs, (srcLen >= blockSize)?BZ_RUN:BZ_FINISH);
 
             totalIn = (((uint64_t)bzs.total_in_hi32) << 32) + bzs.total_in_lo32;
             srcLen -= totalIn;
             totalOut = (((uint64_t)bzs.total_out_hi32) << 32) + bzs.total_out_lo32;
             dstLen -= totalOut;
+
+            if(cb)
+                cb(srcLen);
 
             if(ret < 0)
             {
@@ -65,7 +67,7 @@ uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint6
     return totalOut;
 }
 
-uint64_t cppkit::ck_compression_utils::decompress_buffer(const uint8_t* src, uint64_t srcLen, uint8_t* dst, uint64_t dstLen)
+uint64_t cppkit::ck_compression_utils::decompress_buffer(const uint8_t* src, uint64_t srcLen, uint8_t* dst, uint64_t dstLen, uint32_t blockSize, const std::function<void(uint64_t)>& cb)
 {
     uint64_t totalIn = 0;
     uint64_t totalOut = 0;
@@ -87,9 +89,9 @@ uint64_t cppkit::ck_compression_utils::decompress_buffer(const uint8_t* src, uin
         do
         {
             bzs.next_in = (char*)(s + totalIn);
-            bzs.avail_in = (srcLen >= UINT_MAX)?UINT_MAX:srcLen;
+            bzs.avail_in = (srcLen >= blockSize)?blockSize:srcLen;
             bzs.next_out = (char*)(d + totalOut);
-            bzs.avail_out = (dstLen >= UINT_MAX)?UINT_MAX:dstLen;
+            bzs.avail_out = (dstLen >= blockSize)?blockSize:dstLen;
 
             ret = BZ2_bzDecompress(&bzs);
 
@@ -97,6 +99,9 @@ uint64_t cppkit::ck_compression_utils::decompress_buffer(const uint8_t* src, uin
             srcLen -= totalIn;
             totalOut = (((uint64_t)bzs.total_out_hi32) << 32) + bzs.total_out_lo32;
             dstLen -= totalOut;
+
+            if(cb)
+                cb(srcLen);
 
             if(ret < 0)
             {
