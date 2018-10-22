@@ -3,11 +3,14 @@
 #define cppkit_ck_uuid_utils_h
 
 #include <string>
-#include <vector>
+#include <array>
+#include <cstdint>
 #include <uuid/uuid.h>
 
 namespace cppkit
 {
+
+typedef std::array<uint8_t, 16> ck_uuid;
 
 namespace ck_uuid_utils
 {

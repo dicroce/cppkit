@@ -9,7 +9,7 @@ using namespace cppkit;
 
 REGISTER_TEST_FIXTURE(test_fastlz);
 
-unsigned char data[] = {
+unsigned char data_to_compress[] = {
   0x0a, 0x23, 0x69, 0x66, 0x6e, 0x64, 0x65, 0x66, 0x20, 0x5f, 0x74, 0x65,
   0x73, 0x74, 0x5f, 0x63, 0x6b, 0x5f, 0x6d, 0x65, 0x6d, 0x6f, 0x72, 0x79,
   0x5f, 0x6d, 0x61, 0x70, 0x5f, 0x48, 0x5f, 0x0a, 0x23, 0x64, 0x65, 0x66,
@@ -54,7 +54,7 @@ unsigned char data[] = {
   0x65, 0x28, 0x29, 0x3b, 0x0a, 0x7d, 0x3b, 0x0a, 0x0a, 0x23, 0x65, 0x6e,
   0x64, 0x69, 0x66, 0x0a
 };
-unsigned int data_len = 508;
+unsigned int data_to_compress_len = 508;
 
 void test_fastlz::setup()
 {
@@ -68,18 +68,18 @@ void test_fastlz::test_compress_basic()
 {
     vector<uint8_t> cbuffer(534);
 
-    auto sz = fastlz_compress(&data[0], data_len, &cbuffer[0]);
+    auto sz = fastlz_compress(&data_to_compress[0], data_to_compress_len, &cbuffer[0]);
 
     RTF_ASSERT(sz >= 0);
-    RTF_ASSERT(sz < data_len);
+    RTF_ASSERT(sz < data_to_compress_len);
 
     vector<uint8_t> dbuffer(534);
 
     sz = fastlz_decompress(&cbuffer[0], sz, &dbuffer[0], dbuffer.size());
 
-    RTF_ASSERT(sz == data_len);
+    RTF_ASSERT(sz == data_to_compress_len);
 
-    auto oh = cppkit::sha_256(&data[0], data_len);
+    auto oh = cppkit::sha_256(&data_to_compress[0], data_to_compress_len);
     auto ch = cppkit::sha_256(&dbuffer[0], sz);
 
     RTF_ASSERT(oh == ch);
@@ -89,18 +89,18 @@ void test_fastlz::test_compress_bz2()
 {
     vector<uint8_t> cbuffer(534);
 
-    auto sz = ck_compression_utils::compress_buffer(&data[0], data_len, &cbuffer[0], 534);
+    auto sz = ck_compression_utils::compress_buffer(&data_to_compress[0], data_to_compress_len, &cbuffer[0], 534);
 
     RTF_ASSERT(sz >= 0);
-    RTF_ASSERT(sz < data_len);
+    RTF_ASSERT(sz < data_to_compress_len);
 
     vector<uint8_t> dbuffer(534);
 
     sz = ck_compression_utils::decompress_buffer(&cbuffer[0], sz, &dbuffer[0], dbuffer.size());
 
-    RTF_ASSERT(sz == data_len);
+    RTF_ASSERT(sz == data_to_compress_len);
 
-    auto oh = cppkit::sha_256(&data[0], data_len);
+    auto oh = cppkit::sha_256(&data_to_compress[0], data_to_compress_len);
     auto ch = cppkit::sha_256(&dbuffer[0], sz);
 
     RTF_ASSERT(oh == ch);

@@ -4,7 +4,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
 endif()
 
-set (CMAKE_CXX_STANDARD 14)
+#set (CMAKE_CXX_STANDARD 17)
 
 add_library (cppkit include/cppkit/ck_actor.h
                     include/cppkit/ck_blob_tree.h
@@ -48,9 +48,11 @@ else (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 endif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_options(cppkit PUBLIC "-std=c++17")
     target_compile_options(cppkit PUBLIC "-O0")
     target_compile_options(cppkit PUBLIC "-g")
 else(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_options(cppkit PUBLIC "-std=c++17")
     target_compile_options(cppkit PUBLIC "-O3")
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
