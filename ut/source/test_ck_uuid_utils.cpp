@@ -20,12 +20,13 @@ void test_ck_uuid::teardown()
 
 void test_ck_uuid::test_generate()
 {
-    uint8_t buffer[16];
+    ck_uuid buffer;
     memset(&buffer[0], 0, 16);
-    ck_uuid_utils::generate(&buffer[0]);
+    buffer = ck_uuid_utils::generate();
+    
     RTF_ASSERT(std::accumulate(&buffer[0], &buffer[16], 0) != 0);
 
-    RTF_ASSERT(ck_uuid_utils::generate().length() == 36);
+    RTF_ASSERT(ck_uuid_utils::generate_s().length() == 36);
 }
 
 void test_ck_uuid::test_uuid_to_s()

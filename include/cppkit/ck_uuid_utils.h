@@ -15,9 +15,12 @@ typedef std::array<uint8_t, 16> ck_uuid;
 namespace ck_uuid_utils
 {
 
-void generate(uint8_t* uuid);
-std::string generate();
+ck_uuid generate();
+void generate_in_place(uint8_t* uuid);
+std::string generate_s();
+std::string uuid_to_s(const ck_uuid& uuid);
 std::string uuid_to_s(const uint8_t* uuid);
+ck_uuid s_to_uuid(const std::string& uuidS);
 void s_to_uuid(const std::string& uuidS, uint8_t* uuid);
 int uuid_cmp(const uint8_t* uu1, const uint8_t* uu2);
 

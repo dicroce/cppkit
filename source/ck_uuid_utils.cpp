@@ -6,16 +6,26 @@
 using namespace cppkit;
 using namespace std;
 
-void cppkit::ck_uuid_utils::generate(uint8_t* uuid)
+ck_uuid cppkit::ck_uuid_utils::generate()
+{
+    ck_uuid output;
+    ck_uuid_utils::generate_in_place(&output[0]);
+    return output;
+}
+
+void cppkit::ck_uuid_utils::generate_in_place(uint8_t* uuid)
 {
     uuid_generate_random(uuid);
 }
 
-string cppkit::ck_uuid_utils::generate()
+string cppkit::ck_uuid_utils::generate_s()
 {
-    uint8_t uuid[16];
-    generate(&uuid[0]);
-    return uuid_to_s(&uuid[0]);
+    return uuid_to_s(ck_uuid_utils::generate());
+}
+
+std::string cppkit::ck_uuid_utils::uuid_to_s(const ck_uuid& uuid)
+{
+    return ck_uuid_utils::uuid_to_s(&uuid[0]);
 }
 
 string cppkit::ck_uuid_utils::uuid_to_s(const uint8_t* uuid)
@@ -23,6 +33,13 @@ string cppkit::ck_uuid_utils::uuid_to_s(const uint8_t* uuid)
     char str[37];
     uuid_unparse_lower(uuid, str);
     return str;
+}
+
+ck_uuid cppkit::ck_uuid_utils::s_to_uuid(const std::string& uuidS)
+{
+    ck_uuid output;
+    ck_uuid_utils::s_to_uuid(uuidS, &output[0]);
+    return output;
 }
 
 void cppkit::ck_uuid_utils::s_to_uuid(const string& uuidS, uint8_t* uuid)
