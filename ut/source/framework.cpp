@@ -118,9 +118,9 @@ int main( int argc, char* argv[] )
     else printf("\nFailure.\n");
 
     if(something_failed && !dontWaitOnFail)
-        system("/bin/bash -c 'read -p \"Press Any Key\"'");
+        system("/bin/bash -c 'read -p \"Press [enter] Key\"'");
     else if(forceWait)
-        system("/bin/bash -c 'read -p \"Press Any Key\"'");
+        system("/bin/bash -c 'read -p \"Press [enter] Key\"'");
 
     return 0;
 }
