@@ -120,6 +120,14 @@ public:
         return !(lhs == rhs);
     }
 
+    template<typename NT>
+    static ck_nullable<NT> from(const NT& v)
+    {
+        ck_nullable<NT> c;
+        c.set_value(v);
+        return c;
+    }
+
 private:
     T _value;
     bool _is_null;
