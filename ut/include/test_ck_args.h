@@ -7,6 +7,7 @@ public:
 
     RTF_FIXTURE(test_ck_args);
       TEST(test_ck_args::test_basic);
+      TEST(test_ck_args::test_get_all);
     RTF_FIXTURE_END();
 
     virtual ~test_ck_args() throw() {}
@@ -15,4 +16,5 @@ public:
     virtual void teardown();
 
     void test_basic();
+    void test_get_all();
 };

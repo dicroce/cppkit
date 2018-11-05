@@ -69,6 +69,18 @@ ck_nullable<string> cppkit::args::get_optional_argument(const vector<argument>& 
     return result;
 }
 
+vector<string> cppkit::args::get_all(const vector<argument>& arguments, const string& opt)
+{
+    vector<string> result;
+    vector<argument>::const_iterator i;
+    for(i = arguments.begin(); i != arguments.end(); ++i)
+    {
+        if(i->opt == opt)
+            result.push_back(i->arg);
+    }
+    return result;
+}
+
 bool cppkit::args::check_argument(const vector<args::argument>& arguments, const string& opt, string& arg)
 {
     vector<argument>::const_iterator i;

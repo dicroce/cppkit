@@ -46,3 +46,16 @@ void test_ck_args::test_basic()
     }
 
 }
+
+void test_ck_args::test_get_all()
+{
+    char* argv[] = {(char*)"app", (char*)"--file", (char*)"foo.mp4", (char*)"--file", (char*)"bar.mp4"};
+    int argc = 5;
+
+    auto arguments = args::parse_arguments(argc, argv);
+
+    auto files = args::get_all(arguments, "--file");
+    RTF_ASSERT(files.size() == 2);
+    RTF_ASSERT(files[0] == "foo.mp4");
+    RTF_ASSERT(files[1] == "bar.mp4");
+}
