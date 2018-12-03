@@ -48,11 +48,11 @@ else (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 endif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_options(cppkit PUBLIC "-std=c++17")
+#    target_compile_options(cppkit PUBLIC "-std=c++17")
     target_compile_options(cppkit PUBLIC "-O0")
     target_compile_options(cppkit PUBLIC "-g")
 else(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_options(cppkit PUBLIC "-std=c++17")
+#    target_compile_options(cppkit PUBLIC "-std=c++17")
     target_compile_options(cppkit PUBLIC "-O3")
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
