@@ -4,7 +4,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
 endif()
 
-#set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD 14)
 
 add_library (cppkit include/cppkit/ck_actor.h
                     include/cppkit/ck_blob_tree.h
