@@ -50,13 +50,11 @@ endif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(cppkit PUBLIC "-O0")
     target_compile_options(cppkit PUBLIC "-g")
-    target_compile_options(cppkit PUBLIC "-static")
-    target_compile_options(cppkit PUBLIC "-static-libstdc++")
 else(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(cppkit PUBLIC "-O3")
-    target_compile_options(cppkit PUBLIC "-static")
-    target_compile_options(cppkit PUBLIC "-static-libstdc++")
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+
+target_link_libraries(cppkit -static)
 
 target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
