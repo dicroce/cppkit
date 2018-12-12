@@ -54,17 +54,14 @@ else(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(cppkit PUBLIC "-O3")
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
-target_link_libraries(cppkit -static)
-
 target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 find_library(SSL_LIBRARY ssl)
 find_library(CRYPTO_LIBRARY crypto)
-find_library(DL_LIBRARY dl)
-find_library(PTHREAD_LIBRARY pthread)
 find_library(UUID_LIBRARY uuid)
 find_package(BZip2)
+find_library(BZ2_LIBRARY bz2)
 
-target_link_libraries (cppkit ${PTHREAD_LIBRARY} ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${DL_LIBRARY} ${UUID_LIBRARY} bz2)
+target_link_libraries (cppkit ${SSL_LIBRARY} ${BZ2_LIBRARY} ${CRYPTO_LIBRARY} ${UUID_LIBRARY})
 
 add_subdirectory(ut)
