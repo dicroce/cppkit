@@ -29,5 +29,6 @@ add_executable (cppkit_ut include/framework.h
 
 target_include_directories (cppkit_ut PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+target_link_libraries(cppkit_ut -static-libstdc++)
 target_link_libraries(cppkit_ut -pthread)
-target_link_libraries (cppkit_ut cppkit ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${BZ2_LIBRARY} ${UUID_LIBRARY})
+target_link_libraries(cppkit_ut cppkit ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${BZ2_LIBRARY} ${UUID_LIBRARY})
