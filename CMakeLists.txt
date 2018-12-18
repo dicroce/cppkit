@@ -58,7 +58,7 @@ target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 find_library(SSL_LIBRARY libssl.a)
 find_library(CRYPTO_LIBRARY libcrypto.a)
-find_library(UUID_LIBRARY uuid)
+find_library(UUID_LIBRARY libuuid.a)
 find_package(BZip2)
 find_library(BZ2_LIBRARY libbz2.a)
 target_link_libraries(cppkit ${SSL_LIBRARY} ${BZ2_LIBRARY} ${CRYPTO_LIBRARY} ${UUID_LIBRARY})
