@@ -1,6 +1,7 @@
 
 #include "cppkit/ck_compression_utils.h"
 #include "cppkit/ck_exception.h"
+#include "cppkit/ck_string_utils.h"
 #include <string.h>
 #include <bzlib.h>
 
@@ -39,19 +40,17 @@ uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint6
         do
         {
             bzs.next_in = (char*)(s + totalIn);
-            bzs.avail_in = (srcLen >= blockSize)?blockSize:srcLen;
+            bzs.avail_in = (srcLen >= blockSize)?blockSize:(srcLen-totalIn);
             bzs.next_out = (char*)(d + totalOut);
-            bzs.avail_out = (dstLen >= blockSize)?blockSize:dstLen;
+            bzs.avail_out = (dstLen >= blockSize)?blockSize:(dstLen-totalOut);
 
-            ret = BZ2_bzCompress(&bzs, (srcLen >= blockSize)?BZ_RUN:BZ_FINISH);
+            ret = BZ2_bzCompress(&bzs, (totalIn < srcLen)?BZ_RUN:BZ_FINISH);
 
             totalIn = (((uint64_t)bzs.total_in_hi32) << 32) + bzs.total_in_lo32;
-            srcLen -= totalIn;
             totalOut = (((uint64_t)bzs.total_out_hi32) << 32) + bzs.total_out_lo32;
-            dstLen -= totalOut;
 
             if(cb)
-                cb(srcLen);
+                cb(totalIn);
 
             if(ret < 0)
             {
@@ -89,19 +88,17 @@ uint64_t cppkit::ck_compression_utils::decompress_buffer(const uint8_t* src, uin
         do
         {
             bzs.next_in = (char*)(s + totalIn);
-            bzs.avail_in = (srcLen >= blockSize)?blockSize:srcLen;
+            bzs.avail_in = (srcLen >= blockSize)?blockSize:(srcLen-totalIn);
             bzs.next_out = (char*)(d + totalOut);
-            bzs.avail_out = (dstLen >= blockSize)?blockSize:dstLen;
+            bzs.avail_out = (dstLen >= blockSize)?blockSize:(dstLen-totalOut);
 
             ret = BZ2_bzDecompress(&bzs);
 
             totalIn = (((uint64_t)bzs.total_in_hi32) << 32) + bzs.total_in_lo32;
-            srcLen -= totalIn;
             totalOut = (((uint64_t)bzs.total_out_hi32) << 32) + bzs.total_out_lo32;
-            dstLen -= totalOut;
 
             if(cb)
-                cb(srcLen);
+                cb(totalIn);
 
             if(ret < 0)
             {
