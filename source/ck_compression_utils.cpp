@@ -44,9 +44,6 @@ uint64_t cppkit::ck_compression_utils::compress_buffer(const uint8_t* src, uint6
             bzs.next_out = (char*)(d + totalOut);
             bzs.avail_out = (dstLen >= blockSize)?blockSize:(dstLen-totalOut);
 
-            printf("avail_in = %s\n",ck_string_utils::uint64_to_s(bzs.avail_in).c_str());
-            printf("avail_out = %s\n",ck_string_utils::uint64_to_s(bzs.avail_out).c_str());
-
             ret = BZ2_bzCompress(&bzs, (totalIn < srcLen)?BZ_RUN:BZ_FINISH);
 
             totalIn = (((uint64_t)bzs.total_in_hi32) << 32) + bzs.total_in_lo32;
