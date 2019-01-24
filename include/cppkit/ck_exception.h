@@ -84,6 +84,17 @@ public:
     ck_internal_exception(const char* msg, ...);
 };
 
+class ck_coded_exception : public ck_exception
+{
+public:
+    ck_coded_exception();
+    virtual ~ck_coded_exception() noexcept {}
+    ck_coded_exception(int code, const char* msg, ...);
+    int get_code() const { return _code; }
+private:
+    int _code;
+};
+
 }
 
 #define CK_THROW(ARGS) throw cppkit::ck_exception ARGS ;

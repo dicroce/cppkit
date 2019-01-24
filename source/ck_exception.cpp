@@ -141,3 +141,20 @@ ck_internal_exception::ck_internal_exception(const char* msg, ...) :
     set_msg(ck_string_utils::format(msg, args));
     va_end(args);
 }
+
+
+ck_coded_exception::ck_coded_exception() :
+    ck_exception(),
+    _code(0)
+{
+}
+
+ck_coded_exception::ck_coded_exception(int code, const char* msg, ...) :
+    ck_exception(),
+    _code(code)
+{
+    va_list args;
+    va_start(args, msg);
+    set_msg(ck_string_utils::format(msg, args));
+    va_end(args);
+}
