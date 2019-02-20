@@ -9,10 +9,11 @@ using namespace cppkit;
 ck_memory_map::ck_memory_map(ck_memory_map&& obj) noexcept :
     _mem(std::move(obj._mem)),
     _length(std::move(obj._length)),
-    _mapOffset(0)
+    _mapOffset(std::move(obj._mapOffset))
 {
     obj._mem = NULL;
     obj._length = 0;
+    obj._mapOffset = 0;
 }
 
 ck_memory_map::ck_memory_map(int fd, uint64_t offset, uint64_t len, uint32_t prot, uint32_t flags, uint64_t mapOffset) :
