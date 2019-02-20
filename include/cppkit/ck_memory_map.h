@@ -40,7 +40,7 @@ public:
     ck_memory_map() = delete;
     ck_memory_map(const ck_memory_map& ob ) = delete;
     ck_memory_map(ck_memory_map&& obj) noexcept;
-    ck_memory_map(int fd, uint64_t offset, uint64_t len, uint32_t prot, uint32_t flags );
+    ck_memory_map(int fd, uint64_t offset, uint64_t len, uint32_t prot, uint32_t flags, uint64_t mapOffset=0);
 
     virtual ~ck_memory_map() noexcept;
 
@@ -49,7 +49,7 @@ public:
 
     inline uint8_t* map() const
     {
-        return (uint8_t*)_mem;
+        return ((uint8_t*)_mem) + _mapOffset;
     }
 
     inline uint64_t size() const
@@ -67,6 +67,7 @@ private:
 
     void* _mem;
     uint64_t _length;
+    uint64_t _mapOffset;
 };
 
 }
