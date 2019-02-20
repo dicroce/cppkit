@@ -54,7 +54,7 @@ public:
 
     inline uint64_t size() const
     {
-        return _length;
+        return _length - _mapOffset;
     }
 
     void advise(void* addr, size_t length, int advice) const;
