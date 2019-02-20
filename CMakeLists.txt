@@ -54,13 +54,23 @@ else(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(cppkit PUBLIC "-O3")
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
-target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-find_library(SSL_LIBRARY libssl.a)
-find_library(CRYPTO_LIBRARY libcrypto.a)
-find_library(UUID_LIBRARY libuuid.a)
+
+if(APPLE)
+    set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
+endif()
+
+find_package(OpenSSL)
 find_package(BZip2)
-find_library(BZ2_LIBRARY libbz2.a)
-target_link_libraries(cppkit ${SSL_LIBRARY} ${BZ2_LIBRARY} ${CRYPTO_LIBRARY} ${UUID_LIBRARY})
+
+if(OPENSSL_FOUND)
+    target_compile_definitions(cppkit INTERFACE HAVE_OPENSSL)
+endif()
+
+target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${BZIP_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
+
+find_library(UUID_LIBRARY libuuid.a)
+
+target_link_libraries(cppkit ${SSL_LIBRARY} ${BZIP2_LIBRARIES} ${CRYPTO_LIBRARY} ${UUID_LIBRARY} ${OPENSSL_LIBRARIES})
 
 add_subdirectory(ut)
