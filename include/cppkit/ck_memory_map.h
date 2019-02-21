@@ -47,14 +47,14 @@ public:
     ck_memory_map& operator = (const ck_memory_map&) = delete;
     ck_memory_map& operator = (ck_memory_map&& obj) noexcept;
 
-    inline uint8_t* map() const
+    inline uint8_t* map(bool ignoreOffset = false) const
     {
-        return ((uint8_t*)_mem) + _mapOffset;
+        return (ignoreOffset)?((uint8_t*)_mem):((uint8_t*)_mem) + _mapOffset;
     }
 
-    inline uint64_t size() const
+    inline uint64_t size(bool ignoreOffset = false) const
     {
-        return _length - _mapOffset;
+        return (ignoreOffset)?_length:_length - _mapOffset;
     }
 
     void advise(void* addr, size_t length, int advice) const;
