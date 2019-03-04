@@ -2,6 +2,7 @@
 #ifndef cppkit_ck_memory_map_h
 #define cppkit_ck_memory_map_h
 
+#include "cppkit/ck_exception.h"
 #include <cstdint>
 #include <unistd.h>
 
@@ -37,7 +38,7 @@ public:
         MM_ADVICE_DONTNEED = 0x08
     };
 
-    ck_memory_map() = delete;
+    ck_memory_map();
     ck_memory_map(const ck_memory_map& ob ) = delete;
     ck_memory_map(ck_memory_map&& obj) noexcept;
     ck_memory_map(int fd, uint64_t offset, uint64_t len, uint32_t prot, uint32_t flags, uint64_t mapOffset=0);
@@ -49,6 +50,8 @@ public:
 
     inline uint8_t* map(bool ignoreOffset = false) const
     {
+        if(_mem == nullptr)
+            CK_THROW(("Unable to map default constructed memory map."));
         return (ignoreOffset)?((uint8_t*)_mem):((uint8_t*)_mem) + _mapOffset;
     }
 

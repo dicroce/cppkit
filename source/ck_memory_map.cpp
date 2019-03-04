@@ -6,6 +6,13 @@
 
 using namespace cppkit;
 
+ck_memory_map::ck_memory_map() :
+    _mem(nullptr),
+    _length(0),
+    _mapOffset(0)
+{
+}
+
 ck_memory_map::ck_memory_map(ck_memory_map&& obj) noexcept :
     _mem(std::move(obj._mem)),
     _length(std::move(obj._length)),
@@ -73,7 +80,11 @@ void ck_memory_map::advise(void* addr, size_t length, int advice) const
 
 void ck_memory_map::_close() noexcept
 {
-    munmap(_mem, _length);
+    if(_mem)
+    {
+        munmap(_mem, _length);
+        _mem = nullptr;
+    }
 }
 
 int ck_memory_map::_get_posix_prot_flags(int prot) const
