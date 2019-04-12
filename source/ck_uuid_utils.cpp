@@ -50,5 +50,6 @@ void cppkit::ck_uuid_utils::s_to_uuid(const string& uuidS, uint8_t* uuid)
 
 int cppkit::ck_uuid_utils::uuid_cmp(const uint8_t* uu1, const uint8_t* uu2)
 {
-    return uuid_compare(uu1, uu2);
+    //return uuid_compare(uu1, uu2);
+    return memcmp(uu1, uu2, 16);
 }
