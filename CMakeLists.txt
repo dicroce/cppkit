@@ -17,7 +17,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(bzip2)
 if(NOT bzip2_POPULATED)
   FetchContent_Populate(bzip2)
-  add_subdirectory(${bzip2_SOURCE_DIR} ${cppkit_BINARY_DIR})
+  add_subdirectory(${bzip2_SOURCE_DIR} ${bzip2_BINARY_DIR})
 endif()
 
 add_library (cppkit include/cppkit/ck_actor.h
