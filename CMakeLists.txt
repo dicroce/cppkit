@@ -1,10 +1,24 @@
 cmake_minimum_required (VERSION 2.8.12)
 
+include(FetchContent)
+
 if(NOT CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Debug)
 endif()
 
 set (CMAKE_CXX_STANDARD 14)
+
+FetchContent_Declare(
+    bzip2
+    GIT_REPOSITORY https://github.com/dicroce/bzip2-1.0.6
+    GIT_TAG master
+)
+
+FetchContent_GetProperties(bzip2)
+if(NOT bzip2_POPULATED)
+  FetchContent_Populate(bzip2)
+  add_subdirectory(${bzip2_SOURCE_DIR} ${cppkit_BINARY_DIR})
+endif()
 
 add_library (cppkit include/cppkit/ck_actor.h
                     include/cppkit/ck_blob_tree.h
@@ -54,23 +68,10 @@ else(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(cppkit PUBLIC "-O3")
 endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
-
-
-if(APPLE)
-    set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
-endif()
-
-find_package(OpenSSL)
-find_package(BZip2)
-
-if(OPENSSL_FOUND)
-    target_compile_definitions(cppkit INTERFACE HAVE_OPENSSL)
-endif()
-
-target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${BZIP_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR})
+target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${bzip2_SOURCE_DIR})
 
 find_library(UUID_LIBRARY libuuid.a)
 
-target_link_libraries(cppkit ${SSL_LIBRARY} ${BZIP2_LIBRARIES} ${CRYPTO_LIBRARY} ${UUID_LIBRARY} ${OPENSSL_LIBRARIES})
+target_link_libraries(cppkit bzip2 ${UUID_LIBRARY})
 
 add_subdirectory(ut)
