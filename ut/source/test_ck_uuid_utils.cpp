@@ -70,6 +70,8 @@ void test_ck_uuid::test_cmp()
         memset(&bufferB[0], 0, 16);
         ck_uuid_utils::s_to_uuid("feac6e8c-187b-4520-b410-b19269797fc7", bufferB);
 
+        auto ret = ck_uuid_utils::uuid_cmp(&bufferA[0], &bufferB[0]);
+
         RTF_ASSERT(ck_uuid_utils::uuid_cmp(&bufferA[0], &bufferB[0]) == -1);
     }
 

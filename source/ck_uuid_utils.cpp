@@ -151,7 +151,7 @@ static bool _isValidHexChar(char ch)
 // converts the two hexadecimal characters to an unsigned char (a byte)
 static unsigned char _hexPairToChar(char a, char b)
 {
-	return hexDigitToChar(a) * 16 + hexDigitToChar(b);
+	return _hexDigitToChar(a) * 16 + _hexDigitToChar(b);
 }
 #endif
 
@@ -163,7 +163,7 @@ void cppkit::ck_uuid_utils::s_to_uuid(const string& uuidS, uint8_t* uuid)
 	bool lookingForFirstChar = true;
 	unsigned nextByte = 0;
 
-	for (const char &ch : fromString)
+	for (const char &ch : uuidS)
 	{
 		if (ch == '-')
 			continue;
@@ -180,7 +180,7 @@ void cppkit::ck_uuid_utils::s_to_uuid(const string& uuidS, uint8_t* uuid)
 		{
 			charTwo = ch;
 			auto byte = _hexPairToChar(charOne, charTwo);
-			_bytes[nextByte++] = byte;
+			uuid[nextByte++] = byte;
 			lookingForFirstChar = true;
 		}
 	}
@@ -197,7 +197,8 @@ void cppkit::ck_uuid_utils::s_to_uuid(const string& uuidS, uint8_t* uuid)
 int cppkit::ck_uuid_utils::uuid_cmp(const uint8_t* uu1, const uint8_t* uu2)
 {
 #if defined(IS_IOS) || defined(IS_DARWIN)
-    return memcmp(uu1, uu2, 16);
+	auto ret = memcmp(uu1, uu2, 16);
+    return (ret < 0)?-1:(ret==0)?0:1; // Note: The only thing portable about the return value of memcmp() is its sign!
 #else
     return uuid_compare(uu1, uu2);
 #endif

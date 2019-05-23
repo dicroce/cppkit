@@ -72,8 +72,10 @@ endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${bzip2_SOURCE_DIR})
 
-if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS" AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    find_library(UUID_LIBRARY libuuid.a)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "iOS" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    target_link_libraries(cppkit "-framework CoreFoundation")
+else()
+find_library(UUID_LIBRARY libuuid.a)
     target_link_libraries(cppkit ${UUID_LIBRARY})
 endif()
 
