@@ -27,8 +27,11 @@ add_executable (cppkit_ut include/framework.h
                           source/test_ck_memory_map.cpp
                           source/test_fastlz.cpp)
 
-target_include_directories (cppkit_ut PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories (cppkit_ut PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(cppkit_ut -static-libstdc++)
-target_link_libraries(cppkit_ut -pthread)
-target_link_libraries(cppkit_ut cppkit ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${BZ2_LIBRARY} ${UUID_LIBRARY})
+target_link_libraries(cppkit_ut cppkit bzip2 pthread)
+
+if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "iOS" AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    find_library(UUID_LIBRARY libuuid.a)
+    target_link_libraries(cppkit_ut ${UUID_LIBRARY})
+endif()
