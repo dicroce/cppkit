@@ -24,7 +24,7 @@ Install XCode and the XCode command line utilities packages. Then in the cppkit 
 	cmake .. -G Xcode -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=SIMULATOR64
     cmake --build .
 
-Note: -DPLATFORM=SIMULATOR64
+	Note: -DPLATFORM=SIMULATOR64
 	Other valid settings are:
 		OS = Build for iPhoneOS.
 		OS64 = Build for arm64 iphoneOS.
