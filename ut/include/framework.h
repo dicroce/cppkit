@@ -173,4 +173,8 @@ int rtf_next_port();
 
 #define RTF_NEXT_PORT() rtf_next_port()
 
+std::string rtf_os_scratch_dir();
+
+#define RTF_OS_SCRATCH_DIR() rtf_os_scratch_dir()
+
 #endif

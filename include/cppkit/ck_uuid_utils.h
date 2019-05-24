@@ -5,7 +5,6 @@
 #include <string>
 #include <array>
 #include <cstdint>
-#include <uuid/uuid.h>
 
 namespace cppkit
 {

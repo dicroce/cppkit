@@ -57,9 +57,11 @@ add_library (cppkit include/cppkit/ck_actor.h
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     target_compile_definitions(cppkit PUBLIC IS_DARWIN)
-else (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+    target_compile_definitions(cppkit PUBLIC IS_IOS)
+else()
     target_compile_definitions(cppkit PUBLIC IS_LINUX)
-endif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(cppkit PUBLIC "-O0")
@@ -70,8 +72,13 @@ endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${bzip2_SOURCE_DIR})
 
+if (${CMAKE_SYSTEM_NAME} STREQUAL "iOS" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    target_link_libraries(cppkit "-framework CoreFoundation")
+else()
 find_library(UUID_LIBRARY libuuid.a)
+    target_link_libraries(cppkit ${UUID_LIBRARY})
+endif()
 
-target_link_libraries(cppkit bzip2 ${UUID_LIBRARY})
+target_link_libraries(cppkit bzip2)
 
 add_subdirectory(ut)

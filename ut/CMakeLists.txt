@@ -27,8 +27,21 @@ add_executable (cppkit_ut include/framework.h
                           source/test_ck_memory_map.cpp
                           source/test_fastlz.cpp)
 
-target_include_directories (cppkit_ut PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    target_compile_definitions(cppkit PUBLIC IS_DARWIN)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
+    target_compile_definitions(cppkit PUBLIC IS_IOS)
+else()
+    target_compile_definitions(cppkit PUBLIC IS_LINUX)
+endif()
+                      
+target_include_directories (cppkit_ut PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../include ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(cppkit_ut -static-libstdc++)
-target_link_libraries(cppkit_ut -pthread)
-target_link_libraries(cppkit_ut cppkit ${SSL_LIBRARY} ${CRYPTO_LIBRARY} ${BZ2_LIBRARY} ${UUID_LIBRARY})
+target_link_libraries(cppkit_ut cppkit bzip2 pthread)
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "iOS" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set(MACOSX_FRAMEWORK_IDENTIFIER cppkit_ut)
+else()
+    find_library(UUID_LIBRARY libuuid.a)
+    target_link_libraries(cppkit_ut ${UUID_LIBRARY})
+endif()
