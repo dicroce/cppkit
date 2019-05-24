@@ -5,7 +5,7 @@
 
 #include <poll.h>
 #include <ifaddrs.h>
-#ifdef IS_DARWIN
+#if defined(IS_DARWIN) || defined(IS_IOS)
 #include <net/if.h>
 #include <net/if_dl.h>
 #else
@@ -441,7 +441,7 @@ vector<uint8_t> cppkit::ck_networking::ck_get_hardware_address(const string& ifn
 {
     vector<uint8_t> buffer(6);
 
-#ifdef IS_DARWIN
+#if defined(IS_DARWIN) || defined(IS_IOS)
 
     // here comes
     int mib[6]; // galaxy defender...

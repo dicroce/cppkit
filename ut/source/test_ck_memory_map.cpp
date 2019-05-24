@@ -15,7 +15,9 @@ REGISTER_TEST_FIXTURE(test_ck_memory_map);
 
 void test_ck_memory_map::setup()
 {
-    FILE* outFile = fopen("data", "w+b");
+    auto scratchPath = RTF_OS_SCRATCH_DIR();
+
+    FILE* outFile = fopen((scratchPath + ck_fs::PATH_SLASH + "data").c_str(), "w+b");
 
     uint8_t buffer[4096];
 
@@ -31,12 +33,16 @@ void test_ck_memory_map::setup()
 
 void test_ck_memory_map::teardown()
 {
-    UNLINK("data");
+    auto scratchPath = RTF_OS_SCRATCH_DIR();
+
+    UNLINK((scratchPath + ck_fs::PATH_SLASH + "data").c_str());
 }
 
 void test_ck_memory_map::test_file_mapping()
 {
-    FILE* dataFile = fopen("data", "r+b");
+    auto scratchPath = RTF_OS_SCRATCH_DIR();
+
+    FILE* dataFile = fopen((scratchPath + ck_fs::PATH_SLASH + "data").c_str(), "r+b");
 
     {
         ck_memory_map mm(fileno(dataFile),
@@ -67,11 +73,13 @@ void test_ck_memory_map::test_file_mapping()
 
 void test_ck_memory_map::test_persist_to_disk()
 {
+    auto scratchPath = RTF_OS_SCRATCH_DIR();
+
     // this test maps the data file prepared in setup, and then sets all of its bytes to 0.
     // It then closes the mapping and the file.
     // It then re-opens the file and using fread() verifies that the file contains all 0 now.
 
-    FILE* dataFile = fopen("data", "r+b");
+    FILE* dataFile = fopen((scratchPath + ck_fs::PATH_SLASH + "data").c_str(), "r+b");
 
     {
         ck_memory_map mm(fileno(dataFile),
@@ -91,7 +99,7 @@ void test_ck_memory_map::test_persist_to_disk()
 
     fclose(dataFile);
 
-    dataFile = fopen("data", "r+b");
+    dataFile = fopen((scratchPath + ck_fs::PATH_SLASH + "data").c_str(), "r+b");
 
     uint8_t buffer[4096];
 
@@ -113,7 +121,9 @@ void test_ck_memory_map::test_persist_to_disk()
 
 void test_ck_memory_map::test_move()
 {
-    FILE* dataFile = fopen("data", "r+b");
+    auto scratchPath = RTF_OS_SCRATCH_DIR();
+
+    FILE* dataFile = fopen((scratchPath + ck_fs::PATH_SLASH + "data").c_str(), "r+b");
 
     {
         ck_memory_map mm(fileno(dataFile),

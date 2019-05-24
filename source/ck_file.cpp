@@ -289,7 +289,7 @@ bool cppkit::ck_fs::is_dir(const string& path)
 
 int cppkit::ck_fs::fallocate(FILE* file, uint64_t size)
 {
-#ifdef IS_DARWIN
+#if defined(IS_DARWIN) || defined(IS_IOS)
     auto fd = fileno(file);
 
     fstore_t store = {F_ALLOCATECONTIG, F_PEOFPOSMODE, 0, (off_t)size};

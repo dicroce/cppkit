@@ -53,6 +53,15 @@ int rtf_next_port()
     return ret;
 }
 
+std::string rtf_os_scratch_dir()
+{
+#if defined(IS_IOS)
+    return string("tmp/");
+#else
+    return string("./");
+#endif
+}
+
 void handle_terminate()
 {
     printf( "\nuncaught exception terminate handler called!\n" );
@@ -117,10 +126,10 @@ int main( int argc, char* argv[] )
         printf("\nSuccess.\n");
     else printf("\nFailure.\n");
 
-    if(something_failed && !dontWaitOnFail)
-        system("/bin/bash -c 'read -p \"Press [enter] Key\"'");
-    else if(forceWait)
-        system("/bin/bash -c 'read -p \"Press [enter] Key\"'");
+//    if(something_failed && !dontWaitOnFail)
+//        system("/bin/bash -c 'read -p \"Press [enter] Key\"'");
+//    else if(forceWait)
+//        system("/bin/bash -c 'read -p \"Press [enter] Key\"'");
 
     return 0;
 }
