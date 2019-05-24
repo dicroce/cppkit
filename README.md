@@ -1,18 +1,42 @@
 cppkit
 ======
 
-The goal of cppkit is to provide useful utilities for writing modern C++ based services on the Linux and Mac OSX operating systems.
+The goal of cppkit is to provide useful utilities for writing modern C++ based services on the Linux, Mac OSX and mobile operating systems.
 
 building
 ========
 
-cppkit depends on openssl and libuuid. On fedora systems you can install the needed packages like this:
+The linux version of cppkit depends on libuuid. On fedora systems you can install the needed packages like this:
 
-	dnf install openssl-devel libuuid-devel
+	dnf install libuuid-devel
 
 Build cppkit like this in the standard cmake way:
 
 	mkdir build && cd build && cmake .. && make
+
+building for ios
+================
+
+Install XCode and the XCode command line utilities packages. Then in the cppkit dir
+
+	mkdir build
+	cd build
+	cmake .. -G Xcode -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=SIMULATOR64
+    cmake --build .
+
+Note: -DPLATFORM=SIMULATOR64
+Other valid settings are:
+    OS = Build for iPhoneOS.
+    OS64 = Build for arm64 iphoneOS.
+    OS64COMBINED = Build for arm64 x86_64 iphoneOS. Combined into FAT STATIC lib (supported on 3.14+ of CMakewith "-G Xcode" argument ONLY)
+    SIMULATOR = Build for x86 i386 iphoneOS Simulator.
+    SIMULATOR64 = Build for x86_64 iphoneOS Simulator.
+    TVOS = Build for arm64 tvOS.
+    TVOSCOMBINED = Build for arm64 x86_64 tvOS. Combined into FAT STATIC lib (supported on 3.14+ of CMake with "-G Xcode" argument ONLY)
+    SIMULATOR_TVOS = Build for x86_64 tvOS Simulator.
+    WATCHOS = Build for armv7k arm64_32 for watchOS.
+    WATCHOSCOMBINED = Build for armv7k arm64_32 x86_64 watchOS. Combined into FAT STATIC lib (supported on 3.14+ of CMake with "-G Xcode" argument ONLY)
+    SIMULATOR_WATCHOS = Build for x86_64 for watchOS Simulator.
 
 notices
 =======
