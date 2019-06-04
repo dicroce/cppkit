@@ -495,84 +495,108 @@ unsigned int cppkit::ck_string_utils::s_to_uint(const std::string& s)
 {
     // int's are 32 bit on linux... so...
     uint32_t val;
-    sscanf(s.c_str(), "%u", &val);
+    auto nmatched = sscanf(s.c_str(), "%u", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into unsigned int.", s.c_str()));
     return val;
 }
 
 uint8_t cppkit::ck_string_utils::s_to_uint8(const string& s)
 {
     uint8_t val;
-    sscanf(s.c_str(), "%hhu", &val);
+    auto nmatched = sscanf(s.c_str(), "%hhu", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into uint8_t.", s.c_str()));
     return val;
 }
 
 int8_t cppkit::ck_string_utils::s_to_int8(const string& s)
 {
     int8_t val;
-    sscanf(s.c_str(), "%hhd", &val);
+    auto nmatched = sscanf(s.c_str(), "%hhd", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into int8_t.", s.c_str()));
     return val;
 }
 
 uint16_t cppkit::ck_string_utils::s_to_uint16(const string& s)
 {
     uint16_t val;
-    sscanf(s.c_str(), "%hu", &val);
+    auto nmatched = sscanf(s.c_str(), "%hu", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into uint16_t.", s.c_str()));
     return val;
 }
 
 int16_t cppkit::ck_string_utils::s_to_int16(const string& s)
 {
     int16_t val;
-    sscanf(s.c_str(), "%hd", &val);
+    auto nmatched = sscanf(s.c_str(), "%hd", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into int16_t.", s.c_str()));
     return val;
 }
 
 uint32_t cppkit::ck_string_utils::s_to_uint32(const string& s)
 {
     uint32_t val;
-    sscanf(s.c_str(), "%u", &val);
+    auto nmatched = sscanf(s.c_str(), "%u", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into uint32_t.", s.c_str()));
     return val;
 }
 
 int32_t cppkit::ck_string_utils::s_to_int32(const string& s)
 {
     int32_t val;
-    sscanf(s.c_str(), "%d", &val);
+    auto nmatched = sscanf(s.c_str(), "%d", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into int32_t.", s.c_str()));
     return val;
 }
 
 uint64_t cppkit::ck_string_utils::s_to_uint64(const string& s)
 {
     uint64_t val;
-    sscanf(s.c_str(), "%llu", (unsigned long long*)&val);
+    auto nmatched = sscanf(s.c_str(), "%llu", (unsigned long long*)&val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into uint64_t.", s.c_str()));
     return val;
 }
 
 int64_t cppkit::ck_string_utils::s_to_int64(const string& s)
 {
     int64_t val;
-    sscanf(s.c_str(), "%lld", (long long*)&val);
+    auto nmatched = sscanf(s.c_str(), "%lld", (long long*)&val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into int64_t.", s.c_str()));
     return val;
 }
 
 double cppkit::ck_string_utils::s_to_double(const string& s)
 {
     double val;
-    sscanf(s.c_str(), "%lf", &val);
+    auto nmatched = sscanf(s.c_str(), "%lf", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into double.", s.c_str()));
     return val;
 }
 
 float cppkit::ck_string_utils::s_to_float(const string& s)
 {
     float val;
-    sscanf(s.c_str(), "%f", &val);
+    auto nmatched = sscanf(s.c_str(), "%f", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into float.", s.c_str()));
     return val;
 }
 
 size_t cppkit::ck_string_utils::s_to_size_t(const string& s)
 {
     size_t val;
-    sscanf(s.c_str(), "%zu", &val);
+    auto nmatched = sscanf(s.c_str(), "%zu", &val);
+    if(nmatched != 1)
+        CK_STHROW(ck_invalid_argument_exception, ("Unable to convert (%s) into size_t.", s.c_str()));
     return val;
 }
 
