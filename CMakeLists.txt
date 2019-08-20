@@ -87,7 +87,7 @@ target_include_directories (cppkit PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${
 if (${CMAKE_SYSTEM_NAME} STREQUAL "iOS" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     target_link_libraries(cppkit "-framework CoreFoundation")
 else()
-find_library(UUID_LIBRARY libuuid.a)
+find_library(UUID_LIBRARY NAMES libuuid.a uuid)
     target_link_libraries(cppkit ${UUID_LIBRARY})
 endif()
 
