@@ -5,6 +5,7 @@
 
 #if defined(IS_DARWIN) || defined(IS_IOS)
 #include <CoreFoundation/CFUUID.h>
+#include "uuidP.h"
 #else
 #include <uuid/uuid.h>
 #endif
@@ -194,11 +195,23 @@ void cppkit::ck_uuid_utils::s_to_uuid(const string& uuidS, uint8_t* uuid)
 #endif
 }
 
+#if defined(IS_IOS) || defined(IS_DARWIN)
+	#define UUCMP(u1,u2) if (u1 != u2) return((u1 < u2) ? -1 : 1);
+#endif
+
 int cppkit::ck_uuid_utils::uuid_cmp(const uint8_t* uu1, const uint8_t* uu2)
 {
 #if defined(IS_IOS) || defined(IS_DARWIN)
-	auto ret = memcmp(uu1, uu2, 16);
-    return (ret < 0)?-1:(ret==0)?0:1; // Note: The only thing portable about the return value of memcmp() is its sign!
+	struct uuid	uuid1, uuid2;
+
+	uuid_unpack(uu1, &uuid1);
+	uuid_unpack(uu2, &uuid2);
+
+	UUCMP(uuid1.time_low, uuid2.time_low);
+	UUCMP(uuid1.time_mid, uuid2.time_mid);
+	UUCMP(uuid1.time_hi_and_version, uuid2.time_hi_and_version);
+	UUCMP(uuid1.clock_seq, uuid2.clock_seq);
+	return memcmp(uuid1.node, uuid2.node, 6);
 #else
     return uuid_compare(uu1, uu2);
 #endif
