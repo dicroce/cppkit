@@ -80,5 +80,3 @@ find_library(UUID_LIBRARY NAMES libuuid.a uuid)
 endif()
 
 target_link_libraries(cppkit bzip2)
-
-add_subdirectory(ut)
