@@ -20,18 +20,6 @@ if(NOT bzip2_POPULATED)
   add_subdirectory(${bzip2_SOURCE_DIR} ${bzip2_BINARY_DIR})
 endif()
 
-FetchContent_Declare(
-    bearssl
-    GIT_REPOSITORY https://github.com/dicroce/BearSSL
-    GIT_TAG 6b9c68aea2405ab4dae1d1e7e9a36da681ebca16
-)
-
-FetchContent_GetProperties(bearssl)
-if(NOT bearssl_POPULATED)
-  FetchContent_Populate(bearssl)
-  add_subdirectory(${bearssl_SOURCE_DIR} ${bearssl_BINARY_DIR})
-endif()
-
 add_library (cppkit include/cppkit/ck_actor.h
                     include/cppkit/ck_blob_tree.h
                     include/cppkit/ck_exception.h
@@ -91,6 +79,6 @@ find_library(UUID_LIBRARY NAMES libuuid.a uuid)
     target_link_libraries(cppkit ${UUID_LIBRARY})
 endif()
 
-target_link_libraries(cppkit bzip2 bearssl)
+target_link_libraries(cppkit bzip2)
 
 add_subdirectory(ut)
