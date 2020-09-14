@@ -439,39 +439,6 @@ bool cppkit::ck_string_utils::is_integer(const string& str, bool canHaveSign)
                     verify_digit) == numSize;
 }
 
-string cppkit::ck_string_utils::lstrip(const string& str)
-{
-    string retval = str;
-    size_t pos = 0;
-    while(pos < retval.size() && cppkit::ck_string_utils::is_space(retval[pos])) pos++;
-    retval.erase(0, pos);
-    return retval;
-}
-
-string cppkit::ck_string_utils::rstrip(const string& str)
-{
-    string retval = str;
-    size_t pos = retval.size();
-    while(pos > 0 && cppkit::ck_string_utils::is_space(retval[pos - 1])) pos--;
-    retval.erase(pos);
-    return retval;
-}
-
-string cppkit::ck_string_utils::strip(const string& str)
-{
-    auto retval = cppkit::ck_string_utils::rstrip(str);
-    return cppkit::ck_string_utils::lstrip(retval);
-}
-
-string cppkit::ck_string_utils::strip_eol(const string& str)
-{    
-    if(cppkit::ck_string_utils::ends_with(str, "\r\n"))
-        return str.substr(0, str.size() - 2);
-    if(cppkit::ck_string_utils::ends_with(str, "\n"))
-        return str.substr(0, str.size() - 1);
-    return str;
-}
-
 bool cppkit::ck_string_utils::starts_with(const std::string& str, const std::string& other)
 {
     const size_t otherSize = other.size();

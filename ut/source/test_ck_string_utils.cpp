@@ -235,3 +235,46 @@ void test_ck_string::test_base64_decode()
 
     RTF_ASSERT(memcmp(buf, &decoded[0], 10) == 0);
 }
+
+void test_ck_string::test_strip()
+{
+    {
+        string needs_lstrip = "  needs lstrip";
+        string needs_rstrip = "needs rstrip  ";
+        string needs_strip = "  needs strip  ";
+
+        RTF_ASSERT(needs_lstrip == "  needs lstrip");
+        RTF_ASSERT(needs_rstrip == "needs rstrip  ");
+        RTF_ASSERT(needs_strip == "  needs strip  ");
+
+        ck_string_utils::lstrip(needs_lstrip);
+        ck_string_utils::rstrip(needs_rstrip);
+        ck_string_utils::strip(needs_strip);
+
+        RTF_ASSERT(needs_lstrip == "needs lstrip");
+        RTF_ASSERT(needs_rstrip == "needs rstrip");
+        RTF_ASSERT(needs_strip == "needs strip");
+    }
+
+    {
+        string needs_lstrip = "  needs lstrip";
+        string needs_rstrip = "needs rstrip  ";
+        string needs_strip = "  needs strip  ";
+
+        RTF_ASSERT(needs_lstrip == "  needs lstrip");
+        RTF_ASSERT(needs_rstrip == "needs rstrip  ");
+        RTF_ASSERT(needs_strip == "  needs strip  ");
+
+        auto needed_lstrip = ck_string_utils::lstrip_copy(needs_lstrip);
+        auto needed_rstrip = ck_string_utils::rstrip_copy(needs_rstrip);
+        auto needed_strip = ck_string_utils::strip_copy(needs_strip);
+
+        RTF_ASSERT(needs_lstrip == "  needs lstrip");
+        RTF_ASSERT(needs_rstrip == "needs rstrip  ");
+        RTF_ASSERT(needs_strip == "  needs strip  ");
+
+        RTF_ASSERT(needed_lstrip == "needs lstrip");
+        RTF_ASSERT(needed_rstrip == "needs rstrip");
+        RTF_ASSERT(needed_strip == "needs strip");
+    }
+}

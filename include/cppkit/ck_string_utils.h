@@ -44,10 +44,37 @@ inline bool is_space(char a) { return (a == ' ' || a == '\n' || a == '\t' || a =
 
 bool is_integer(const std::string& str, bool canHaveSign=true);
 
-std::string lstrip(const std::string& str);
-std::string rstrip(const std::string& str);
-std::string strip(const std::string& str);
-std::string strip_eol(const std::string& str);
+inline std::string& lstrip(std::string& s, const char* t = " \t\n\r\f\v")
+{
+    s.erase(0, s.find_first_not_of(t));
+    return s;
+}
+
+inline std::string& rstrip(std::string& s, const char* t = " \t\n\r\f\v")
+{
+    s.erase(s.find_last_not_of(t) + 1);
+    return s;
+}
+
+inline std::string& strip(std::string& s, const char* t = " \t\n\r\f\v")
+{
+    return lstrip(rstrip(s, t), t);
+}
+
+inline std::string lstrip_copy(std::string s, const char* t = " \t\n\r\f\v")
+{
+    return lstrip(s, t);
+}
+
+inline std::string rstrip_copy(std::string s, const char* t = " \t\n\r\f\v")
+{
+    return rstrip(s, t);
+}
+
+inline std::string strip_copy(std::string s, const char* t = " \t\n\r\f\v")
+{
+    return strip(s, t);
+}
 
 bool starts_with(const std::string& str, const std::string& other);
 bool ends_with(const std::string& str, const std::string& other);

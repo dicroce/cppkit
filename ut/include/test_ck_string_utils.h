@@ -18,6 +18,7 @@ public:
       TEST(test_ck_string::test_numeric_conversions);
       TEST(test_ck_string::test_base64_encode);
       TEST(test_ck_string::test_base64_decode);
+      TEST(test_ck_string::test_strip);
     RTF_FIXTURE_END();
 
     virtual ~test_ck_string() throw() {}
@@ -41,4 +42,6 @@ public:
 
     void test_base64_encode();
     void test_base64_decode();
+
+    void test_strip();
 };
