@@ -1,9 +1,0 @@
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/install/strip.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/install/local.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/install.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/list_install_components.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/rebuild_cache.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/buildy.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/package.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/package_source.dir
-/home/developer/code/open/cppkit/tools/buildy/build/CMakeFiles/edit_cache.dir
